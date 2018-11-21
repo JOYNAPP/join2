@@ -1,15 +1,85 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, FunEvent} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    // User.create({email: 'cody@email.com', password: '123'}),
+    // User.create({email: 'murphy@email.com', password: '123'})
+    User.bulkCreate([
+      {
+        name: 'Claire',
+        email: 'claire@gmail.com',
+        password: '1234',
+        isAdmin: false,
+        invitedTo: [1, 4, 5, 6, 7],
+        attending: [1, 5, 7],
+        pastEvents: [2]
+      },
+      {
+        name: 'Sarai',
+        email: 'sarai@gmail.com',
+        password: '567',
+        isAdmin: false,
+        invitedTo: [5, 6, 7, 8],
+        attending: [5, 7, 8],
+        pastEvents: [1, 2, 10, 11]
+      },
+      {
+        name: 'Mary',
+        email: 'mary@gmail.com',
+        password: '567',
+        isAdmin: false,
+        invitedTo: [7, 8],
+        attending: [8],
+        pastEvents: [11, 12, 13]
+      },
+      {
+        name: 'Steve',
+        email: 'steve@gmail.com',
+        password: '567',
+        isAdmin: false,
+        invitedTo: [5, 6],
+        attending: [3, 5],
+        pastEvents: [13, 14]
+      },
+      {
+        name: 'Maggie',
+        email: 'mags@gmail.com',
+        password: '1010',
+        isAdmin: true,
+        invitedTo: [5, 6],
+        attending: [3, 5],
+        pastEvents: [13, 14]
+      },
+      {
+        name: 'Uma',
+        email: 'ums@gmail.com',
+        password: '2020',
+        isAdmin: true,
+        invitedTo: [5, 6],
+        attending: [3, 5],
+        pastEvents: [13, 14]
+      },
+      {
+        name: 'Maria',
+        email: 'mars@gmail.com',
+        password: '3030',
+        isAdmin: true,
+        invitedTo: [5, 6],
+        attending: [3, 5],
+        pastEvents: [13, 14]
+      }
+    ]),
+    FunEvent.bulkCreate([
+      {
+        name: 'Drake'
+      }
+    ])
   ])
 
   console.log(`seeded ${users.length} users`)

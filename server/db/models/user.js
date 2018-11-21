@@ -40,10 +40,10 @@ const User = db.define('user', {
   pastEvents: {
     type: Sequelize.ARRAY(Sequelize.INTEGER)
   },
-  isAdmin: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
-  },
+  // isAdmin: {
+  //   type: Sequelize.BOOLEAN,
+  //   defaultValue: false
+  // },
   googleId: {
     type: Sequelize.STRING
   }

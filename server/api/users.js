@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const db = require('../db')
-const User = require('../db/models/index')
-const FunEvent = require('../db/models/index')
+const {User} = require('../db/models/index')
+const {FunEvent} = require('../db/models/index')
 
 // Get all users
 router.get('/', async function(req, res, next) {
@@ -17,21 +17,21 @@ router.get('/', async function(req, res, next) {
 })
 
 // Get particular user by their id
-// router.get('/:id', async function(req, res, next) {
-//   try {
-//     const id = req.params.id
-//     const particularUser = await User.findById(
-//       id
-//       //   {
-//       //   include: [{model: FunEvent}]
-//       // }
-//     )
-//     console.log('Particular User by ID!')
-//     res.status(200).send(particularUser)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+router.get('/:id', async function(req, res, next) {
+  try {
+    const id = req.params.id
+    const particularUser = await User.findById(
+      id
+      // {
+      //   include: [{model: FunEvent}]
+      // }
+    )
+    console.log('Particular User by ID!')
+    res.status(200).send(particularUser)
+  } catch (error) {
+    next(error)
+  }
+})
 
 // Create a user
 router.post('/', async function(req, res, next) {
