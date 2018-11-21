@@ -31,15 +31,6 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
-  invitedEvents: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-  },
-  attendedEvents: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-  },
-  pastEvents: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-  },
   googleId: {
     type: Sequelize.STRING
   }

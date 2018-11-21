@@ -9,7 +9,7 @@ const Contract = db.define('contract', {
   fulfilled: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-  },
+  }
 })
 
 module.exports = Contract
