@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
+//Other components:
+import Navbar from './navbar'
+
 /**
  * COMPONENT
  */
@@ -10,6 +13,7 @@ export const UserHome = props => {
 
   return (
     <div>
+      <Navbar />
       <h3>Welcome, {email}</h3>
     </div>
   )
