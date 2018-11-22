@@ -2,8 +2,19 @@ body {
   font-family: sans-serif;
 }
 
+main {
+  color: white;
+}
+
 a {
   text-decoration: none;
+  color: white
+}
+a:visited {
+  color: lightgray
+}
+a:hover {
+  color: hotpink;
 }
 
 label {
