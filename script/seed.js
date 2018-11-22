@@ -5,47 +5,25 @@ const { User, Contract} = require('../server/db/models')
 const { green, red } = require('chalk')
 
 const contracts = [{
-  eventId: 1,
-  personOneId: 1,
-  personTwoId: 3,
-  personOneRes: 'pending',
-  personTwoRes: 'pending',
+  eventId: 56789,
   fulfilled: false
 },{
-  eventId: 2,
-  personOneId: 1,
-  personTwoId: 2,
-  personOneRes: 'yes',
-  personTwoRes: 'pending',
+  eventId: 56790,
   fulfilled: false
 },
 {
-  eventId: 3,
-  personOneId: 2,
-  personTwoId: 3,
-  personOneRes: 'yes',
-  personTwoRes: 'yes',
-  fulfilled: true
-},
-]
+  eventId: 56791
+}]
 
 const users = [{
   name: 'Cody',
   email: 'cody@email.com',
   password: '123',
-  invitedEvents: [1, 3, 5]
 }, {
   name: 'Maggie',
   email: 'maggie@email.com',
   password: '123',
-  invitedEvents: [1, 5]
-}, {
-  name: 'Bobo',
-  email: 'bobo@email.com',
-  password: '123',
-  invitedEvents: [5, 6]
-}
-]
+}]
 
 
 const seed = () =>
