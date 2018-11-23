@@ -25,22 +25,18 @@ const User = db.define('user', {
   },
   cardHolderName: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   creditCardNumber: {
     type: Sequelize.INTEGER,
-    allowNull: false,
     validate: {
       isCreditCard: true
     }
   },
   expirationDate: {
     type: Sequelize.STRING, //This should be changed to a MM/YY format
-    allowNull: false,
   },
   cvc: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
   salt: {
     type: Sequelize.STRING,
