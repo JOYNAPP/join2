@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import {postContract} from '../store/contract'
 
 
 class FriendList extends Component {
@@ -29,7 +32,13 @@ class FriendList extends Component {
         }
     }
     handleOnSubmit(){
+        let friends = this.state.chosenFriends.map(friend => Number(friend))
+        this.props.createContract({
+            eventId: 78900,
+            friends: friends
+        })
         console.log('You are going with', this.state.chosenFriends, '!')
+        console.log('friends', friends)
     }
 
     render() {
@@ -48,11 +57,11 @@ class FriendList extends Component {
         <tbody>
           {
             friends.map(friend =>
-              <tr className='black' key={friend}>
-                <td><input type="checkbox" value={friend} onClick={this.handleClick}/></td>
+              <tr className='black' key={friend.userId}>
+                <td><input type="checkbox" value= {friend.userId} name={friend.name} onClick={this.handleClick}/></td>
                 <td>
                 {
-                  friend
+                  friend.name
                 }
                 </td>
               </tr>
@@ -65,7 +74,11 @@ class FriendList extends Component {
 
     </div>
   )
-    }
+}
 }
 
-export default FriendList
+const mapDispatchToProps = (dispatch) => ({
+        createContract: (contract) => dispatch(postContract(contract))
+      })
+
+export default withRouter(connect(null, mapDispatchToProps)(FriendList))
