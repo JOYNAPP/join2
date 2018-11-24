@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import {postContract} from '../store/contract'
 
 
 class FriendList extends Component {
@@ -29,6 +32,10 @@ class FriendList extends Component {
         }
     }
     handleOnSubmit(){
+        this.props.createContract({
+            eventId: 78900,
+            friends: this.state.chosenFriends
+        })
         console.log('You are going with', this.state.chosenFriends, '!')
     }
 
@@ -65,7 +72,11 @@ class FriendList extends Component {
 
     </div>
   )
-    }
+}
 }
 
-export default FriendList
+const mapDispatchToProps = (dispatch) => ({
+        createContract: (contract) => dispatch(postContract(contract))
+      })
+
+export default withRouter(connect(null, mapDispatchToProps)(FriendList))
