@@ -60,28 +60,20 @@ const seed = async () => {
     date: '01/04/2019',
     ticketPrice: 10
   })
-    
-
-  
-
- 
-
-
-
 
 
   const beyonce = await Contract.create({
-    eventId: 56790,
+    eventId: 1,
     fulfilled: false
   })
 
   const sting = await Contract.create({
-    eventId: 56790,
+    eventId: 2,
     fulfilled: false
   })
 
   const kanye = await Contract.create({
-    eventId: 56791
+    eventId: 3
   })
 
 

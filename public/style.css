@@ -8,10 +8,10 @@ main {
 
 a {
   text-decoration: none;
-  color: white
+  color: black
 }
 a:visited {
-  color: white
+  color: #230b0d
 }
 a:hover {
   color: lightgray
@@ -34,4 +34,8 @@ img {
   border-radius: 3px;
   border: 2px solid black;
   height: 300px;
+}
+
+.return {
+  color: black
 }

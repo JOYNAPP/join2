@@ -35,10 +35,9 @@ class FriendList extends Component {
  
         this.props.createContract({
             eventId: 78900,
-            friends: friends
+            friends: this.state.chosenFriends
         })
         console.log('You are going with', this.state.chosenFriends, '!')
-        console.log('friends', friends)
     }
 
     render() {
