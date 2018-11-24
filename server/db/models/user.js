@@ -31,7 +31,6 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
-<<<<<<< HEAD
   invitedEvents: {
     type: Sequelize.ARRAY(Sequelize.INTEGER)
   },
@@ -45,8 +44,6 @@ const User = db.define('user', {
   //   type: Sequelize.BOOLEAN,
   //   defaultValue: false
   // },
-=======
->>>>>>> master
   googleId: {
     type: Sequelize.STRING
   }

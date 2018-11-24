@@ -20,12 +20,7 @@ router.get('/', async function(req, res, next) {
 router.get('/:id', async function(req, res, next) {
   try {
     const id = req.params.id
-    const particularUser = await User.findById(
-      id
-      // {
-      //   include: [{model: FunEvent}]
-      // }
-    )
+    const particularUser = await User.findById(id)
     console.log('Particular User by ID!')
     res.status(200).send(particularUser)
   } catch (error) {

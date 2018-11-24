@@ -6,6 +6,15 @@ const FunEvent = db.define('event', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  date: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  ticketPrice: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
   }
 })
 
