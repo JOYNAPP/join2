@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-<<<<<<< HEAD
 import {
+  SingleEvent,
   Login,
   Signup,
   UserHome,
@@ -11,9 +11,6 @@ import {
   AllEvents,
   Inbox
 } from './components'
-=======
-import {Login, Signup, UserHome, SignupNew, SingleEvent} from './components'
->>>>>>> master
 import {me} from './store'
 
 /**
@@ -32,15 +29,9 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-<<<<<<< HEAD
         <Route exact path="/signup/new" component={SignupNew} />
-        <Route exact path="/allEvents" component={AllEvents} />
-        <Route exact path="/inbox" component={Inbox} />
-=======
-        <Route exact path ="/signup/new" component={SignupNew} />
         <Route exact path="/event" component={SingleEvent} />
 
->>>>>>> master
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

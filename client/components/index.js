@@ -9,7 +9,4 @@ export {default as AllEvents} from './all-events'
 export {default as Inbox} from './inbox'
 export {Login, Signup} from './auth-form'
 export {SignupNew} from './SignupNew'
-<<<<<<< HEAD
-=======
 export {default as SingleEvent} from './SingleEvent'
->>>>>>> master
