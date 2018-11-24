@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 const express = require('express')
 const router = express.Router()
-
-const db = require('../db')
 const {FunEvent} = require('../db/models/index')
 
 // Get all events
@@ -62,9 +59,3 @@ router.put('/:id', async function(req, res, next) {
 // what is the point of listing out the variable vs req.body? id see any change when post (via postman). tried posting variable not listed and worked. tried not including variables listed and worked... ?.
 
 module.exports = router
-=======
-const router = require('express').Router()
-
-module.exports = router
-
->>>>>>> master

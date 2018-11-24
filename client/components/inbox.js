@@ -9,10 +9,10 @@ export default class Inbox extends Component {
     }
   }
   async componentDidMount() {
-    // make axios call to get all user's inviedToEvents ids
+    // make axios call to get all user's inviedToEvents ids (how to get user id?)
     // make axios(test)/API call to get the events represented by the ids
     // Set local state
-    const res = await axios.get('')
+    const res = await axios.get('/api/users/1')
     const eventsIds = res.data // should be a array of ints representing event ids
     let events = []
     for (let i = 0; i < eventsIds.length; i++) {
