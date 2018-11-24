@@ -1,90 +1,105 @@
+
 'use strict'
 
 const db = require('../server/db')
-const {User, Contract, FunEvent} = require('../server/db/models')
-const {green, red} = require('chalk')
+const { User, Contract, FunEvent} = require('../server/db/models')
+const { green, red } = require('chalk')
 
-const contracts = [
-  {
-    eventId: 56789,
-    fulfilled: false
-  },
-  {
-    eventId: 56790,
-    fulfilled: false
-  },
-  {
-    eventId: 56791
-  }
-]
 
-const funEvents = [
-  {
+const seed = async () => {
+  await db.sync({force: true})
+
+  const cody = await User.create({
+    name: 'Cody',
+    email: 'cody@email.com',
+    password: '123'
+  })
+
+  const maggie = await User.create({
+    name: 'Maggie',
+    email: 'maggie@email.com',
+    password: '123'
+  })
+
+  const maria = await User.create({
+    name: 'Maria',
+    email: 'maria@email.com',
+    password: '123'
+  })
+
+  const liv = await User.create({
+    name: 'Liv',
+    email: 'liv@email.com',
+    password: '123'
+  })
+  
+  
+   const drake = await FunEvent.create({
     name: 'Drake Concert',
     date: '01/01/2019',
     ticketPrice: 50
-  },
-  {
-    name: 'Ira Glass',
+  })
+    
+  
+   const iraGlass = await FunEvent.create({
+        name: 'Ira Glass',
     date: '01/02/2019',
     ticketPrice: 30
-  },
-  {
+  })
+   
+   
+     
+   const bobDylan = await FunEvent.create({
     name: 'Bob Dylan',
     date: '01/03/2019',
     ticketPrice: 100
-  },
-  {
+  })
+   
+    const rickyMartin = await FunEvent.create({
     name: 'Ricky Martin',
     date: '01/04/2019',
     ticketPrice: 10
-  }
-]
+  })
+    
 
-const users = [
-  {
-    name: 'Cody',
-    email: 'cody@email.com',
-    password: '123',
-    invitedEvents: [1, 2, 3],
-    attendedEvents: [],
-    pastEvents: []
-  },
-  {
-    name: 'Maggie',
-    email: 'maggie@email.com',
-    password: '123',
-    invitedEvents: [2, 3, 4],
-    attendedEvents: [],
-    pastEvents: []
-  }
-]
+  
 
-const seed = () =>
-  Promise.all(contracts.map(elem => Contract.create(elem)))
-    .then(() => Promise.all(users.map(elem => User.create(elem))))
-    .then(() => Promise.all(funEvents.map(elem => FunEvent.create(elem))))
+ 
 
-const main = () => {
-  console.log('Syncing the db...')
-  db
-    .sync({force: true})
-    .then(() => {
-      console.log(green('Seeding the database...'))
-      return seed()
-    })
-    .catch(err => {
-      console.error(red('Oh noes! Something went wrong!'))
-      console.error(err)
-    })
-    .then(() => {
-      db.close()
-      console.log(green('Seeded Successfully!!'))
-      return null
-    })
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${contracts.length} contracts`)
-  console.log(`seeded ${funEvents.length} events`)
+
+
+
+  const beyonce = await Contract.create({
+    eventId: 56790,
+    fulfilled: false
+  })
+
+  const sting = await Contract.create({
+    eventId: 56790,
+    fulfilled: false
+  })
+
+  const kanye = await Contract.create({
+    eventId: 56791
+  })
+
+
+  await Promise.all([
+    beyonce.setUsers(maggie),
+    cody.setContracts(sting),
+    maggie.setContracts(kanye),
+    maria.setContracts(beyonce)
+
+  ])
+
+  console.log(green('Seeding success!'))
+  db.close()
 }
-main()
+
+seed()
+  .catch(err => {
+    console.error(red('Something went wrong'))
+    console.error(err)
+    db.close()
+  })

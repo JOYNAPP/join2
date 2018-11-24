@@ -6,13 +6,15 @@ const {User} = require('../db/models/index')
 const {FunEvent} = require('../db/models/index')
 
 // Get all users
-router.get('/', async function(req, res, next) {
+
+router.get('/', async (req, res, next) => {
   try {
-    const allUsers = await User.findAll()
-    console.log('All Users!')
-    res.status(200).send(allUsers)
-  } catch (error) {
-    next(error)
+    const users = await User.findAll({
+      attributes: ['id', 'email']
+    })
+    res.json(users)
+  } catch (err) {
+    next(err)
   }
 })
 
@@ -51,6 +53,7 @@ router.put('/:id', async function(req, res, next) {
       name,
       email,
       password
+ 
     })
     res
       .status(201)
