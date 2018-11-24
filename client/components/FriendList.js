@@ -32,10 +32,10 @@ class FriendList extends Component {
         }
     }
     handleOnSubmit(){
-        let friends = this.state.chosenFriends.map(friend => Number(friend))
+
         this.props.createContract({
             eventId: 78900,
-            friends: friends
+            friends: this.state.chosenFriends
         })
         console.log('You are going with', this.state.chosenFriends, '!')
         console.log('friends', friends)
