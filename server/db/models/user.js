@@ -23,6 +23,21 @@ const User = db.define('user', {
       return () => this.getDataValue('password')
     }
   },
+  cardHolderName: {
+    type: Sequelize.STRING,
+  },
+  creditCardNumber: {
+    type: Sequelize.STRING,
+    validate: {
+      isCreditCard: true
+    }
+  },
+  expirationDate: {
+    type: Sequelize.STRING, //This should be changed to a MM/YY format
+  },
+  cvc: {
+    type: Sequelize.INTEGER,
+  },
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
