@@ -32,11 +32,13 @@ class FriendList extends Component {
         }
     }
     handleOnSubmit(){
+
         this.props.createContract({
             eventId: 78900,
             friends: this.state.chosenFriends
         })
         console.log('You are going with', this.state.chosenFriends, '!')
+        console.log('friends', friends)
     }
 
     render() {
@@ -55,11 +57,11 @@ class FriendList extends Component {
         <tbody>
           {
             friends.map(friend =>
-              <tr className='black' key={friend}>
-                <td><input type="checkbox" value={friend} onClick={this.handleClick}/></td>
+              <tr className='black' key={friend.userId}>
+                <td><input type="checkbox" value= {friend.userId} name={friend.name} onClick={this.handleClick}/></td>
                 <td>
                 {
-                  friend
+                  friend.name
                 }
                 </td>
               </tr>

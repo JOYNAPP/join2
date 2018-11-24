@@ -10,7 +10,7 @@ router.post('/', async (req, res, next) => {
       let contract = await Contract.create({
         eventId: req.body.eventId
       })
-      await contract.setUsers([req.body.friends])
+      await contract.setUsers([...req.body.friends])
 
       await contract.save()
   } catch(err) {
