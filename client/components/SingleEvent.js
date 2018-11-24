@@ -8,7 +8,8 @@ class SingleEvent extends Component {
     constructor() {
         super();
         this.state = {
-            friends: [{name: 'Uma', userId: 1}, {name: 'Maria', userId: 2},{name: 'Liv', userId: 3}, {name: 'Lucas', userId: 4}]
+             friends: [{name: 'Uma', userId: 1}, {name: 'Maria', userId: 2},{name: 'Liv', userId: 3}, {name: 'Lucas', userId: 4}]
+ 
         }
         console.log('something in single event')
     }

@@ -32,7 +32,7 @@ class FriendList extends Component {
         }
     }
     handleOnSubmit(){
-        let friends = this.state.chosenFriends.map(friend => Number(friend))
+ 
         this.props.createContract({
             eventId: 78900,
             friends: friends

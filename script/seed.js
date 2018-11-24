@@ -1,7 +1,8 @@
+
 'use strict'
 
 const db = require('../server/db')
-const { User, Contract} = require('../server/db/models')
+const { User, Contract, FunEvent} = require('../server/db/models')
 const { green, red } = require('chalk')
 
 
@@ -31,6 +32,41 @@ const seed = async () => {
     email: 'liv@email.com',
     password: '123'
   })
+  
+  
+   const drake = await FunEvent.create({
+    name: 'Drake Concert',
+    date: '01/01/2019',
+    ticketPrice: 50
+  })
+    
+  
+   const iraGlass = await FunEvent.create({
+        name: 'Ira Glass',
+    date: '01/02/2019',
+    ticketPrice: 30
+  })
+   
+   
+     
+   const bobDylan = await FunEvent.create({
+    name: 'Bob Dylan',
+    date: '01/03/2019',
+    ticketPrice: 100
+  })
+   
+    const rickyMartin = await FunEvent.create({
+    name: 'Ricky Martin',
+    date: '01/04/2019',
+    ticketPrice: 10
+  })
+    
+
+  
+
+ 
+
+
 
 
 
@@ -52,7 +88,9 @@ const seed = async () => {
   await Promise.all([
     beyonce.setUsers(maggie),
     cody.setContracts(sting),
-    maggie.setContracts(kanye)
+    maggie.setContracts(kanye),
+    maria.setContracts(beyonce)
+
   ])
 
   console.log(green('Seeding success!'))
