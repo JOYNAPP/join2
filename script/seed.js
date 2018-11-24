@@ -52,7 +52,9 @@ const seed = async () => {
   await Promise.all([
     beyonce.setUsers(maggie),
     cody.setContracts(sting),
-    maggie.setContracts(kanye)
+    maggie.setContracts(kanye),
+    maria.setContracts(beyonce)
+
   ])
 
   console.log(green('Seeding success!'))
