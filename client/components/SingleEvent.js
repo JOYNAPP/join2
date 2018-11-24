@@ -8,7 +8,8 @@ class SingleEvent extends Component {
     constructor() {
         super();
         this.state = {
-            friends: [{name: 'Uma', userId: 1}, {name: 'Maria', userId: 2},{name: 'Liv', userId: 3}]
+             friends: [{name: 'Uma', userId: 1}, {name: 'Maria', userId: 2},{name: 'Liv', userId: 3}, {name: 'Lucas', userId: 4}]
+ 
         }
         console.log('something in single event')
     }
@@ -22,6 +23,9 @@ class SingleEvent extends Component {
             <div>
                 <div className='grid-child'>
                 <div className='user-orders'>
+                <div className='event-image'>
+                    <img src="https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg" />
+                </div>
                         <div><h2 className='order-details' id='left-float'>Who Do You Want To Go With?</h2></div>
                         <FriendList friends ={this.state.friends} />
                     </div>

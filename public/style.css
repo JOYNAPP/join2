@@ -11,10 +11,10 @@ a {
   color: white
 }
 a:visited {
-  color: lightgray
+  color: white
 }
 a:hover {
-  color: hotpink;
+  color: lightgray
 }
 
 label {
@@ -29,4 +29,9 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+img {
+  border-radius: 3px;
+  border: 2px solid black;
+  height: 300px;
 }

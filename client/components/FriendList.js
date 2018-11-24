@@ -32,10 +32,10 @@ class FriendList extends Component {
         }
     }
     handleOnSubmit(){
-
+ 
         this.props.createContract({
             eventId: 78900,
-            friends: this.state.chosenFriends
+            friends: friends
         })
         console.log('You are going with', this.state.chosenFriends, '!')
         console.log('friends', friends)
