@@ -5,6 +5,8 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
+export {default as AllEvents} from './all-events'
+export {default as Inbox} from './inbox'
 export {Login, Signup} from './auth-form'
 export {SignupNew} from './SignupNew'
 export {default as SingleEvent} from './SingleEvent'

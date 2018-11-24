@@ -5,14 +5,14 @@ const db = require('../db')
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
     validate: {
-      isEmail: true,
+      isEmail: true
     }
   },
   password: {
@@ -46,6 +46,19 @@ const User = db.define('user', {
       return () => this.getDataValue('salt')
     }
   },
+  invitedEvents: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER)
+  },
+  attendedEvents: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER)
+  },
+  pastEvents: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER)
+  },
+  // isAdmin: {
+  //   type: Sequelize.BOOLEAN,
+  //   defaultValue: false
+  // },
   googleId: {
     type: Sequelize.STRING
   }
@@ -59,6 +72,16 @@ module.exports = User
 User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
+// User.prototype.confirm = function(eventId){
+//   let indxOfEvent = index of eventId
+//   if(indxOfEvent !== -1){
+//     this.invitedTo.slice(indxOfEvent..)
+//     this.attending.push(eventId).sort
+//   } else {
+//     console.log('not invited to particular event')
+//   }
+// if eventId is in invitedTo array copy into variable, remove from invited to, and push into attending
+// }
 
 /**
  * classMethods

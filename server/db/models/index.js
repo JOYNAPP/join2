@@ -1,5 +1,7 @@
 const User = require('./user')
 const Contract = require('./contract')
+const FunEvent = require('./event')
+
 const UserContract = require('./userContract')
 
 /**
@@ -12,7 +14,6 @@ const UserContract = require('./userContract')
 User.belongsToMany(Contract, {through: UserContract})
 Contract.belongsToMany(User, {through: UserContract})
 
-
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -23,4 +24,5 @@ module.exports = {
   User,
   Contract,
   UserContract,
+  FunEvent
 }
