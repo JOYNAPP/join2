@@ -12,16 +12,24 @@ export default class allEvent extends Component {
     }
   }
 
-  componentDidMount() {
-    sdk.request('/users/me').then(res => {
-      console.log(res)
-    })
+  async componentDidMount() {
+    // sdk.request('/users/me').then(res => {
+    //   console.log(res)
+    // })
+    const res = await axios.get('/api/events')
+    const events = res.data
+    console.table('dringus', events)
+    this.setState({events: events})
+    console.table(events)
   }
 
   render() {
     return (
       <div>
         <h2> All Events:</h2>
+        {this.state.events.map(event => {
+          return <div key={event.id}> {event.name} </div>
+        })}
       </div>
     )
   }
