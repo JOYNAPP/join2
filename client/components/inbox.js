@@ -62,12 +62,15 @@ class Inbox extends Component {
         {this.state.invitedTo.map(event => {
           return (
             <div key={event.id}>
-            <h3>Contract Id of: {event.id}</h3>
+            <h3>Event Id: {event.id}</h3>
               <h3>{event.name}</h3>
               <h5>{event.date}</h5>
               <h5>{event.ticketPrice}</h5>
+              <p>Would you like to attend this event? By clicking 'Confirm' you agree to JOINing this event!</p>
+              <p>We take over from here :)</p>
               <button type="button" value={event.id} onClick={this.handleConfirm}>Confirm</button>
               <button type="button" value={event.id} onClick={this.handleDecline}>Decline</button>
+              <button type="button" value={event.id}>Event Info</button>
             </div>
           )
         })}

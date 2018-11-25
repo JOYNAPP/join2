@@ -31,8 +31,9 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signup/new" component={SignupNew} />
         <Route exact path="/event" component={SingleEvent} />
-        <Route exact path="/events" component={AllEvents} />
-        <Route path="/inbox" component={Inbox} />
+        <Route exact path ="/allEvents" component={AllEvents}/>
+        <Route path ="/inbox" component={Inbox} />
+
 
         {isLoggedIn && (
           <Switch>
