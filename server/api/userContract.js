@@ -16,7 +16,7 @@ router.put('/', async (req, res, next) => {
     const contract = await UserContract.findById(req.body.id)
     const response = req.body.response
     contract.update({
-      responsed: true,
+      responded: true,
       response: response
     })
   } catch(err) {
