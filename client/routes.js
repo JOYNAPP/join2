@@ -34,6 +34,7 @@ class Routes extends Component {
         <Route exact path ="/allEvents" component={AllEvents}/>
         <Route path ="/inbox" component={Inbox} />
 
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -14,7 +14,9 @@ export const UserHome = props => {
   return (
     <div>
       {/* <Navbar /> */}
+
       <h3>Welcome to JOYN, {name}!</h3>
+
     </div>
   )
 }
