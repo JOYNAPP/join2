@@ -5,6 +5,8 @@
     <meta name='viewport' content='width=device-width initial-scale=1.0'>
     <title>JOYN</title>
     <link rel="stylesheet" href="/style.css" />
+    <script src="https://unpkg.com/eventbrite/dist/eventbrite.min.js"></script>
+
     <script defer src="/bundle.js"></script>
     <style>
       /*
@@ -20,7 +22,7 @@
       */
       html, body, .viewport {
         width: 100%;
-        height: 100%; 
+        height: 100%;
         margin: 0;
       }
 
@@ -55,19 +57,19 @@
   </head>
   <body>
     <!--Your Main App contents-->
-    <div id="app" class="flex-container"  
+    <div id="app" class="flex-container"
     style ="background: #fb9fa4; color: black"></div>
     </object>
 
 
 <!--Your Splash Screen-->
-<div id="splash"  class="flex-container" 
+<div id="splash"  class="flex-container"
      style ="background: #f7a583; display: none"  >
 
   <!--Center align Splash contents in all screen sizes-->
       <div id="flex-item" >
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGvaIWed26uYYryjCfO2qWpAFGrDyoWUlvCuPx-sEMAguMHcKQvw" 
-            alt="app_icon" 
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGvaIWed26uYYryjCfO2qWpAFGrDyoWUlvCuPx-sEMAguMHcKQvw"
+            alt="app_icon"
             style="width:150px ; height :150px"
             />
 
@@ -91,18 +93,18 @@
  }, 50);
 }
 
- setTimeout(function(){ 
+ setTimeout(function(){
 
           if(typeof(Storage) !== "undefined") {
 
            console.log("Already shown" +sessionStorage.getItem('spalashShown'));
 
-            if( !sessionStorage.getItem('spalashShown') || sessionStorage.getItem('spalashShown') === null ) {  
+            if( !sessionStorage.getItem('spalashShown') || sessionStorage.getItem('spalashShown') === null ) {
 
             document.getElementById('splash') .style.display = 'inline';
 
              //Display splash
-             setTimeout(function(){   
+             setTimeout(function(){
 
               fade(document.getElementById('splash'));
                // document.getElementById('splash') .style.display = 'none'
@@ -126,7 +128,7 @@
                       }, 0);
 
  </script>
-    
+
   </body>
 </html>
 
