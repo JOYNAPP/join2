@@ -3,6 +3,7 @@ import { withRouter, NavLink} from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {me} from '../store'
+import {putContract} from '../store/contract'
 
 class Inbox extends Component {
   constructor() {
@@ -10,12 +11,14 @@ class Inbox extends Component {
     this.state = {
       invitedTo: []
     }
+    this.handleConfirm = this.handleConfirm.bind(this)
+    this.handleDecline = this.handleDecline.bind(this)
   }
   async componentDidMount() {
     // make axios call to get all user's inviedToEvents ids (how to get user id?)
     // make axios(test)/API call to get the events represented by the ids
     // Set local state
-    this.props.loadInitialData()
+    this.props.actions.loadInitialData()
     console.log('this props user', this.props.user)
       const currUserId = this.props.user.id
       const res = await axios.get(`/api/userContract/${currUserId}/events`)
@@ -28,7 +31,15 @@ class Inbox extends Component {
       //   events.push(event)
       // }
       this.setState({invitedTo: events})
-    
+  }
+  handleConfirm(e) {
+    console.log('I want to go!', e.target.value)
+    this.props.actions.respondInvite({id: `${e.target.value}`, response: true})
+  }
+
+  handleDecline(e) {
+    console.log('Sorry, I do not want to go!')
+    this.props.actions.respondInvite({id: `${e.target.value}`, response: false})
   }
   render() {
           const inboxEvents = this.state.invitedTo || [];
@@ -55,8 +66,8 @@ class Inbox extends Component {
               <h3>{event.name}</h3>
               <h5>{event.date}</h5>
               <h5>{event.ticketPrice}</h5>
-              <button type="button">Confirm</button>
-              <button type="button">Decline</button>
+              <button type="button" value={event.id} onClick={this.handleConfirm}>Confirm</button>
+              <button type="button" value={event.id} onClick={this.handleDecline}>Decline</button>
             </div>
           )
         })}
@@ -65,20 +76,25 @@ class Inbox extends Component {
   }
 }
 }
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user
   }
 }
-const mapDispatch = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
+    actions: {
+      loadInitialData: function() {
+        dispatch(me())
+      },
+      respondInvite: function(response){
+        dispatch(putContract(response))
+      }
     }
   }
 }
-export default withRouter(connect(mapState, mapDispatch)(Inbox))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Inbox))
 
 // import {Link} from 'react-router-dom'
 

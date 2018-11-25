@@ -10,6 +10,19 @@ router.get('/', async (req, res, next) => {
       next(err)
     }
 })
+//This route is used to update user's responses - 'decline' or 'accept' an invite
+router.put('/', async (req, res, next) => {
+  try{
+    const contract = await UserContract.findById(req.body.id)
+    const response = req.body.response
+    contract.update({
+      responsed: true,
+      response: response
+    })
+  } catch(err) {
+    console.error(err)
+  }
+})
 
 //This route will be used to pull the events that a user is associated with
 router.get('/:id/events', async (req, res, next) => {
