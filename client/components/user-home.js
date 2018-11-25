@@ -13,7 +13,7 @@ export const UserHome = props => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h3>Welcome, {email}</h3>
     </div>
   )
