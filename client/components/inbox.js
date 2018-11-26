@@ -35,12 +35,13 @@ class Inbox extends Component {
   }
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
-    this.props.actions.respondInvite({id: `${e.target.value}`, response: true})
+    this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
+
   }
 
   handleDecline(e) {
     console.log('Sorry, I do not want to go!')
-    this.props.actions.respondInvite({id: `${e.target.value}`, response: false})
+    this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
   }
   render() {
     const inboxEvents = this.props.userContracts || []
