@@ -4,17 +4,18 @@ console.log(eventbrite)
 const router = express.Router()
 const {FunEvent} = require('../db/models/index')
 
-const sdk = eventbrite({token: 'AF36NVFKHSLG27TQBBWF'})
+// const sdk = eventbrite({token: 'AF36NVFKHSLG27TQBBWF'})
 // Get all events
 router.get('/', async function(req, res, next) {
+  console.log('In the "all events" route!')
   try {
-    //const event = await FunEvent.findAll()
-    const event = await sdk.request('/users/me').then(res => {
-      console.log(res)
-    })
-    console.table('eventbrite:', event)
-    console.log('All Events!')
-    res.status(200).send(event)
+    const dataBaseEvents = await FunEvent.findAll()
+    // const event = await sdk.request('/users/me').then(response => {
+    //   console.log('response:', response)
+    //   console.log('response.data:', response.data)
+    // })
+    console.table('eventbrite:', dataBaseEvents)
+    res.status(200).send(dataBaseEvents)
   } catch (error) {
     next(error)
   }

@@ -15,6 +15,9 @@ const FunEvent = db.define('event', {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 0
+  },
+  imgUrl: {
+    type: Sequelize.STRING
   }
 })
 

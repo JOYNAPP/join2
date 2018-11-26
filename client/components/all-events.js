@@ -40,6 +40,7 @@ export default class allEvents extends Component {
                 <a onClick={() => history.push('/event')}>{event.name}</a>
               </h3>
               <div>{event.date}</div>
+              {/* <img href={event.imgUrl} /> */}
               <br />
             </div>
           )
