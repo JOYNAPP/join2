@@ -56,7 +56,7 @@ export const postContract = (contract) => {
 export const putContract = (response) => {
   return async (dispatch) => {
     try {
-      const res = await axios.put(`/api/userContract/`, response)
+      const res = await axios.post(`/api/logic/`, response)
       console.log('response in thunk', res)
       const contract = res.data
       console.log('contract', contract)

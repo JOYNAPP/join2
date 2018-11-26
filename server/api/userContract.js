@@ -24,6 +24,7 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+
 //This route will be used to pull the events that a user is associated with
 router.get('/:id/events', async (req, res, next) => {
   try {
