@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import {me} from '../store'
 import {putContract, loadContracts} from '../store/contract'
+import history from '../history'
 
 class Inbox extends Component {
   constructor(props) {
@@ -89,7 +90,9 @@ class Inbox extends Component {
                 >
                   Decline
                 </button>
-                <button type="button" value={event.id}>
+
+                <button type="button" value={event.id}
+                onClick={() => history.push(`/event/${event.id}`)}>
                   Event Info
                 </button>
               </div>
