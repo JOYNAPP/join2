@@ -3,14 +3,14 @@ import { withRouter, NavLink} from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {me} from '../store'
-import {putContract} from '../store/contract'
+import {putContract, loadContracts} from '../store/contract'
 
 class Inbox extends Component {
-  constructor() {
-    super()
-    this.state = {
-      invitedTo: []
-    }
+  constructor(props) {
+    super(props)
+    // this.state = {
+    //   invitedTo: []
+    // }
     this.handleConfirm = this.handleConfirm.bind(this)
     this.handleDecline = this.handleDecline.bind(this)
   }
@@ -19,18 +19,19 @@ class Inbox extends Component {
     // make axios(test)/API call to get the events represented by the ids
     // Set local state
     this.props.actions.loadInitialData()
-    console.log('this props user', this.props.user)
-      const currUserId = this.props.user.id
-      const res = await axios.get(`/api/userContract/${currUserId}/events`)
-      const data = res.data // should be a array of ints representing event ids
-      const contracts = data.contracts
-      console.log('contracts', contracts)
-      let events = [...contracts]
+    this.props.actions.loadContracts(2)
+    console.log('user id', this.props.user)
+    console.log('this state userContracts', this.props.userContracts)
+      // const currUserId = this.props.user.id
+      // const res = await axios.get(`/api/userContract/${currUserId}/events`)
+      // const data = res.data // should be a array of ints representing event ids
+      // const contracts = data.contracts
+      // console.log('contracts', contracts)
+    
       // for (let i = 0; i < contracts.length; i++) {
       //   const event = await axios.get('call API with event[i]')
       //   events.push(event)
       // }
-      this.setState({invitedTo: events})
   }
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
@@ -42,7 +43,7 @@ class Inbox extends Component {
     this.props.actions.respondInvite({id: `${e.target.value}`, response: false})
   }
   render() {
-          const inboxEvents = this.state.invitedTo || [];
+          const inboxEvents = this.props.userContracts || [];
       if(inboxEvents.length === 0) {
         return (
           <div className="inboxError">
@@ -59,7 +60,7 @@ class Inbox extends Component {
     return (
       <div>
         <h2> Inbox:</h2>
-        {this.state.invitedTo.map(event => {
+        {inboxEvents.map(event => {
           return (
             <div key={event.id}>
             <h3>Event Id: {event.id}</h3>
@@ -82,7 +83,8 @@ class Inbox extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    userContracts: state.contract.userContracts
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -90,6 +92,9 @@ const mapDispatchToProps = dispatch => {
     actions: {
       loadInitialData: function() {
         dispatch(me())
+      },
+      loadContracts: function(userId) {
+        dispatch(loadContracts(userId))
       },
       respondInvite: function(response){
         dispatch(putContract(response))
