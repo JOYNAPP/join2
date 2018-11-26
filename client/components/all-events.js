@@ -36,9 +36,7 @@ export default class allEvents extends Component {
         <h3>Drake</h3>
         <img onClick={() => history.push('/event')}src="https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg" />
 
-//         {this.state.events.map(event => {
-//           return <div key={event.id}> {event.name} </div>
-//         })}
+       {/* {this.state.events.map(event => { return <div key={event.id}> {event.name} </div> })} */}
 
       </div>
     )
