@@ -28,6 +28,7 @@ export default class allEvents extends Component {
     return (
       <div>
         <h2> All Events:</h2>
+
         {/* <h3>Drake</h3>
         <img
           onClick={() => history.push('/event')}
@@ -44,6 +45,7 @@ export default class allEvents extends Component {
             </div>
           )
         })}
+
       </div>
     )
   }

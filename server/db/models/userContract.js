@@ -8,7 +8,7 @@ const UserContract = db.define('userContract', {
     },
     responded: {
         type: Sequelize.BOOLEAN,
-        defaultValue: null
+        defaultValue: false
     }
 })
 
