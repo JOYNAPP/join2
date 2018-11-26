@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Contract} = require('../db/models')
+const {Contract, User} = require('../db/models')
 
 module.exports = router
 
@@ -16,4 +16,15 @@ router.post('/', async (req, res, next) => {
   } catch(err) {
       console.error(err)
   }  
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const contract = await Contract.findById(req.params.id, {
+      include: [{model: User}]
+    })
+    res.json(contract)
+  } catch(err) {
+    console.error(err)
+  }
 })

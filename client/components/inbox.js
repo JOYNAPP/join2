@@ -9,9 +9,6 @@ import history from '../history'
 class Inbox extends Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   invitedTo: []
-    // }
     this.handleConfirm = this.handleConfirm.bind(this)
     this.handleDecline = this.handleDecline.bind(this)
   }
@@ -23,21 +20,10 @@ class Inbox extends Component {
     this.props.actions.loadContracts(2)
     console.log('user id', this.props.user)
     console.log('this state userContracts', this.props.userContracts)
-    // const currUserId = this.props.user.id
-    // const res = await axios.get(`/api/userContract/${currUserId}/events`)
-    // const data = res.data // should be a array of ints representing event ids
-    // const contracts = data.contracts
-    // console.log('contracts', contracts)
-
-    // for (let i = 0; i < contracts.length; i++) {
-    //   const event = await axios.get('call API with event[i]')
-    //   events.push(event)
-    // }
   }
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
-
   }
 
   handleDecline(e) {
@@ -65,17 +51,22 @@ class Inbox extends Component {
         <div>
           <h2> Inbox:</h2>
           {inboxEvents.map(event => {
+            console.log('event', event)
+            const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
+              return `${friend.name}`
+            })
             return (
               <div key={event.id}>
                 <h3>Event Id: {event.id}</h3>
                 <h3>{event.name}</h3>
                 <h5>{event.date}</h5>
                 <h5>{event.ticketPrice}</h5>
+                <h5>Friends Also Invited: {friends.join(', ')}!</h5>
                 <p>
                   Would you like to attend this event? By clicking 'Confirm' you
-                  agree to JOINing this event!
+                  agree to JOYNing this event!
                 </p>
-                <p>We take over from here :)</p>
+                <p>We'll take over from here 😊</p>
                 <button
                   type="button"
                   value={event.id}
