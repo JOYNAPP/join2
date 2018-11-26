@@ -28,9 +28,6 @@ export default class allEvents extends Component {
           return (
             <div className="event-list" key={event.id}>
               <h3>
-                {/* <a onClick={() => history.push('/event')}>
-                  Name: {event.name.text}
-                </a> */}
                 <Link to={`/events/${event.id}`}>{event.name.text}</Link>
               </h3>
               <div>Date: {event.start.local}</div>
