@@ -20,9 +20,11 @@ class SingleEvent extends Component {
     }
     render() {
         const users = this.props.users || []
+        const user = this.props.user
         // console.log('props in single event', props)
         console.log('state', this.state)
         console.log('this props users', this.props.users)
+        console.log('user', user)
         return (
 
             <div>
@@ -33,7 +35,7 @@ class SingleEvent extends Component {
                 </div>
                         <div><h2 className='order-details' id='left-float'>Who Do You Want To Go With?</h2></div>
                         {users.length ? 
-                        <FriendList friends ={users} />
+                        <FriendList friends ={users} user={user} />
                         : <div>There are no users right now!</div>
                         }
                     </div>
@@ -45,6 +47,7 @@ class SingleEvent extends Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.user,
         users: state.user.allUsers
     }
   }
