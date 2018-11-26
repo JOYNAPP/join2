@@ -35,7 +35,7 @@ class FriendList extends Component {
  
         this.props.createContract({
             eventId: 78900,
-            friends: this.state.chosenFriends
+            friends: [...this.state.chosenFriends, this.props.user.id]
         })
         console.log('You are going with', this.state.chosenFriends, '!')
     }
@@ -55,7 +55,7 @@ class FriendList extends Component {
         </thead>
         <tbody>
           {
-            friends.map(friend =>
+            friends.filter(friend => friend.id !== this.props.user.id ).map(friend =>
               <tr className='black' key={friend.id}>
                 <td><input type="checkbox" value= {friend.id} name={friend.name} onClick={this.handleClick}/></td>
                 <td>
