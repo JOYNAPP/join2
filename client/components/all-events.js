@@ -14,9 +14,9 @@ export default class allEvents extends Component {
   }
 
   async componentDidMount() {
-    // sdk.request('/users/me').then(res => {
-    //   console.log(res)
-    // })
+    await sdk.request('/users/me').then(res => {
+      console.log(res)
+    })
     const res = await axios.get('/api/events')
     const events = res.data
     console.table('dringus', events)

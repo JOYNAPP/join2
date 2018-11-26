@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import { withRouter, NavLink} from 'react-router-dom'
-import { connect } from 'react-redux'
+import {withRouter, NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
 import axios from 'axios'
 import {me} from '../store'
 import {putContract} from '../store/contract'
@@ -20,17 +20,17 @@ class Inbox extends Component {
     // Set local state
     this.props.actions.loadInitialData()
     console.log('this props user', this.props.user)
-      const currUserId = this.props.user.id
-      const res = await axios.get(`/api/userContract/${currUserId}/events`)
-      const data = res.data // should be a array of ints representing event ids
-      const contracts = data.contracts
-      console.log('contracts', contracts)
-      let events = [...contracts]
-      // for (let i = 0; i < contracts.length; i++) {
-      //   const event = await axios.get('call API with event[i]')
-      //   events.push(event)
-      // }
-      this.setState({invitedTo: events})
+    const currUserId = this.props.user.id
+    const res = await axios.get(`/api/userContract/${currUserId}/events`)
+    const data = res.data // should be a array of ints representing event ids
+    const contracts = data.contracts
+    console.log('contracts', contracts)
+    let events = [...contracts]
+    // for (let i = 0; i < contracts.length; i++) {
+    //   const event = await axios.get('call API with event[i]')
+    //   events.push(event)
+    // }
+    this.setState({invitedTo: events})
   }
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
@@ -42,42 +42,62 @@ class Inbox extends Component {
     this.props.actions.respondInvite({id: `${e.target.value}`, response: false})
   }
   render() {
-          const inboxEvents = this.state.invitedTo || [];
-      if(inboxEvents.length === 0) {
-        return (
-          <div className="inboxError">
-            <h1>Invitations</h1>
-            <div className="error">
-              Your inbox does not contain any invitations yet.
-            </div>
-            <button type="button">
-              <NavLink to="/events" className="return">Explore Events</NavLink>
-            </button>
+    const inboxEvents = this.state.invitedTo || []
+    if (inboxEvents.length === 0) {
+      return (
+        <div className="inboxError">
+          <h1>Invitations</h1>
+          <div className="error">
+            Your inbox does not contain any invitations yet.
           </div>
-        )
-      } else {
-    return (
-      <div>
-        <h2> Inbox:</h2>
-        {this.state.invitedTo.map(event => {
-          return (
-            <div key={event.id}>
-            <h3>Event Id: {event.id}</h3>
-              <h3>{event.name}</h3>
-              <h5>{event.date}</h5>
-              <h5>{event.ticketPrice}</h5>
-              <p>Would you like to attend this event? By clicking 'Confirm' you agree to JOINing this event!</p>
-              <p>We take over from here :)</p>
-              <button type="button" value={event.id} onClick={this.handleConfirm}>Confirm</button>
-              <button type="button" value={event.id} onClick={this.handleDecline}>Decline</button>
-              <button type="button" value={event.id}>Event Info</button>
-            </div>
-          )
-        })}
-      </div>
-    )
+          <button type="button">
+            <NavLink to="/events" className="return">
+              Explore Events
+            </NavLink>
+          </button>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h2> Inbox:</h2>
+          {this.state.invitedTo.map(event => {
+            return (
+              <div key={event.id}>
+                <h3>Event Id: {event.id}</h3>
+                <h3>{event.name}</h3>
+                <h5>{event.date}</h5>
+                <h5>{event.ticketPrice}</h5>
+                <p>
+                  Would you like to attend this event? By clicking 'Confirm' you
+                  agree to JOYN this event!
+                </p>
+                <p>And that's it.</p>
+                <p>We do the rest.</p>
+                <button
+                  type="button"
+                  value={event.id}
+                  onClick={this.handleConfirm}
+                >
+                  Confirm
+                </button>
+                <button
+                  type="button"
+                  value={event.id}
+                  onClick={this.handleDecline}
+                >
+                  Decline
+                </button>
+                <button type="button" value={event.id}>
+                  Event Info
+                </button>
+              </div>
+            )
+          })}
+        </div>
+      )
+    }
   }
-}
 }
 const mapStateToProps = state => {
   return {
@@ -91,7 +111,7 @@ const mapDispatchToProps = dispatch => {
       loadInitialData: function() {
         dispatch(me())
       },
-      respondInvite: function(response){
+      respondInvite: function(response) {
         dispatch(putContract(response))
       }
     }
@@ -106,7 +126,7 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Inbox))
 //         super(props);
 //     }
 //     render() {
-//       //for now using this.props.inboxEvents, but this will 
+//       //for now using this.props.inboxEvents, but this will
 //       //have to change later to correspond to correct props name
 //       const inboxEvents = this.props.inboxEvents || [];
 //       if(inboxEvents.length === 0) {
@@ -136,4 +156,3 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Inbox))
 // }
 
 // export default Inbox
-
