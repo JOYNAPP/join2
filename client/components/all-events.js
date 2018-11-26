@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import history from '../history'
 import axios from 'axios'
 import mockData from '../../server/api/mock-event'
@@ -27,11 +28,14 @@ export default class allEvents extends Component {
           return (
             <div className="event-list" key={event.id}>
               <h3>
-                <a onClick={() => history.push('/event')}>
-                  Name:{event.name.text}
-                </a>
+                {/* <a onClick={() => history.push('/event')}>
+                  Name: {event.name.text}
+                </a> */}
+                <Link to={`/event/${event.id}`}>
+                  <div>Name: {event.name}</div>
+                </Link>
               </h3>
-              <div>Date:{event.start.local}</div>
+              <div>Date: {event.start.local}</div>
               <img src={event.logo} onClick={() => history.push('/event')} />
               <br />
               <br />
