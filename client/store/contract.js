@@ -71,7 +71,7 @@ export const putContract = (response) => {
 export const loadContracts = (userId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/api/userContract/${userId}/events`)
+      const res = await axios.get(`/api/userContract/${userId}/users`)
       const contracts = res.data.contracts
       const action = getUserContracts(contracts)
       dispatch(action)
