@@ -25,6 +25,7 @@ async function getEvents() {
       return MoRes
     } else return data.events.slice(0, 1) // Do something with your data!
   })
+  console.log('RES:', res)
   return res
 }
 //const events = getEvents()
@@ -35,11 +36,11 @@ router.get('/', async function(req, res, next) {
 
   try {
     // const dataBaseEvents = await FunEvent.findAll()
-    //const events = await getEvents()
+    // const events = await getEvents()
     const events = MockResponse.slice(0, 3)
     // events.pop('text')
     // events.pop('html')
-    console.table('eventbrite:', events)
+    console.log('eventbriteee:', events)
     res.status(200).send(events)
   } catch (error) {
     console.log('error in events.js')

@@ -31,38 +31,6 @@ const seed = async () => {
     password: '123'
   })
 
-  const drake = await FunEvent.create({
-    name: 'Drake Concert',
-    date: '01/01/2019',
-    ticketPrice: 50,
-    imgUrl:
-      'https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg'
-  })
-
-  const iraGlass = await FunEvent.create({
-    name: 'Ira Glass',
-    date: '01/02/2019',
-    ticketPrice: 30,
-    imgUrl:
-      'https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg'
-  })
-
-  const bobDylan = await FunEvent.create({
-    name: 'Bob Dylan',
-    date: '01/03/2019',
-    ticketPrice: 100,
-    imgUrl:
-      'https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg'
-  })
-
-  const rickyMartin = await FunEvent.create({
-    name: 'Ricky Martin',
-    date: '01/04/2019',
-    ticketPrice: 10,
-    imgUrl:
-      'https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg'
-  })
-
   const beyonce = await Contract.create({
     eventId: 1,
     fulfilled: false
