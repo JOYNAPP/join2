@@ -57,7 +57,7 @@ class Inbox extends Component {
       )
     } else {
       return (
-        <div>
+        <div className='inbox'>
           <h2> Inbox:</h2>
           {inboxEvents.map(event => {
             console.log('event', event)
