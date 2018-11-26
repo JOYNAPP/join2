@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import history from '../history'
 import axios from 'axios'
-import eventbrite from 'eventbrite'
-
-const sdk = eventbrite({token: 'AF36NVFKHSLG27TQBBWF'})
+import mockData from '../../server/api/mock-event'
 
 export default class allEvents extends Component {
   constructor() {
@@ -14,9 +12,6 @@ export default class allEvents extends Component {
   }
 
   async componentDidMount() {
-    await sdk.request('/users/me').then(res => {
-      console.log(res)
-    })
     const res = await axios.get('/api/events')
     const events = res.data
     console.table('dringus', events)
@@ -32,12 +27,14 @@ export default class allEvents extends Component {
           return (
             <div className="event-list" key={event.id}>
               <h3>
-                <a onClick={() => history.push('/event')}>{event.name}</a>
+                <a onClick={() => history.push('/event')}>
+                  Name:{event.name.text}
+                </a>
               </h3>
-              <div>{event.date}</div>
-              {/* <img src={event.imgUrl} onClick={() => history.push('/event')} />
+              <div>Date:{event.start.local}</div>
+              <img src={event.logo} onClick={() => history.push('/event')} />
               <br />
-              <br /> */}
+              <br />
             </div>
           )
         })}

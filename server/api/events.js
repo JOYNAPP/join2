@@ -20,8 +20,10 @@ async function getEvents() {
       // console.log(error.message)
       console.log('ERROR')
       console.log(error.message)
-      return MockResponse.slice(0, 1)
-    } else return data['events'].slice(0, 1) // Do something with your data!
+      const MoRes = MockResponse.slice(0, 1)
+      console.log(MoRes)
+      return MoRes
+    } else return data.events.slice(0, 1) // Do something with your data!
   })
   return res
 }
@@ -34,7 +36,7 @@ router.get('/', async function(req, res, next) {
   try {
     // const dataBaseEvents = await FunEvent.findAll()
     //const events = await getEvents()
-    const events = MockResponse
+    const events = MockResponse.slice(0, 3)
     // events.pop('text')
     // events.pop('html')
     console.table('eventbrite:', events)
