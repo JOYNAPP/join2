@@ -32,6 +32,10 @@ form div {
   display: inline-block;
 }
 img {
+    height: 150px;
+}
+
+.eventimg {
   border: 5px solid black;
   height: 150px;
 }
