@@ -56,8 +56,8 @@ class FriendList extends Component {
         <tbody>
           {
             friends.map(friend =>
-              <tr className='black' key={friend.userId}>
-                <td><input type="checkbox" value= {friend.userId} name={friend.name} onClick={this.handleClick}/></td>
+              <tr className='black' key={friend.id}>
+                <td><input type="checkbox" value= {friend.id} name={friend.name} onClick={this.handleClick}/></td>
                 <td>
                 {
                   friend.name

@@ -20,7 +20,7 @@ const initialState = {
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
-const getAllUsers = () => ({type: GET_ALL_USERS})
+const getAllUsers = (allUsers) => ({type: GET_ALL_USERS, allUsers})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -32,6 +32,8 @@ export const fetchAllUsers = () => async dispatch => {
     res = await axios.get('/api/users')
     const allUsers = res.data
     const action = getAllUsers(allUsers)
+    console.log('allUSers in thunk', allUsers)
+    console.log('action', action)
     dispatch(action)
   } catch (err) {
     console.error(err)
@@ -97,7 +99,7 @@ export const logout = () => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_USERS:
-    return { ...state, allUsers: action.users}
+    return { ...state, allUsers: action.allUsers}
     case GET_USER:
       return action.user
     case REMOVE_USER:
