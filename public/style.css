@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  outline: black;
 }
 
 main {
@@ -8,13 +9,13 @@ main {
 
 a {
   text-decoration: none;
-  color: black
+  color: black;
 }
 a:visited {
-  color: #230b0d
+  color: #230b0d;
 }
 a:hover {
-  color: lightgray
+  color: rgb(223, 201, 206);
 }
 
 label {
@@ -23,7 +24,7 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 2.5em;
 }
 
 form div {
@@ -31,11 +32,14 @@ form div {
   display: inline-block;
 }
 img {
-  border-radius: 3px;
-  border: 2px solid black;
-  height: 300px;
+  border: 5px solid black;
+  height: 150px;
 }
 
 .return {
-  color: black
+  color: black;
+}
+
+.all-events {
+  display: flex;
 }

@@ -28,20 +28,16 @@ export default class allEvents extends Component {
     return (
       <div>
         <h2> All Events:</h2>
-        {/* <h3>Drake</h3>
-        <img
-          onClick={() => history.push('/event')}
-          src="https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg"
-        /> */}
         {this.state.events.map(event => {
           return (
-            <div key={event.id}>
+            <div className="event-list" key={event.id}>
               <h3>
                 <a onClick={() => history.push('/event')}>{event.name}</a>
               </h3>
               <div>{event.date}</div>
-              {/* <img href={event.imgUrl} /> */}
+              {/* <img src={event.imgUrl} onClick={() => history.push('/event')} />
               <br />
+              <br /> */}
             </div>
           )
         })}
