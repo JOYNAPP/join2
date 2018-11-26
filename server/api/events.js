@@ -1,11 +1,18 @@
 const express = require('express')
+const eventbrite = require('eventbrite')
+console.log(eventbrite)
 const router = express.Router()
 const {FunEvent} = require('../db/models/index')
 
+const sdk = eventbrite({token: 'AF36NVFKHSLG27TQBBWF'})
 // Get all events
 router.get('/', async function(req, res, next) {
   try {
-    const event = await FunEvent.findAll()
+    //const event = await FunEvent.findAll()
+    const event = await sdk.request('/users/me').then(res => {
+      console.log(res)
+    })
+    console.table('eventbrite:', event)
     console.log('All Events!')
     res.status(200).send(event)
   } catch (error) {
