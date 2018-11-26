@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 //Other components:
 import Navbar from './navbar'
+import AllEvents from './all-events'
 
 /**
  * COMPONENT
@@ -13,10 +14,8 @@ export const UserHome = props => {
 
   return (
     <div>
-      {/* <Navbar /> */}
-
       <h3>Welcome to JOYN, {name}!</h3>
-
+      <AllEvents />
     </div>
   )
 }

@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import history from '../history'
 import axios from 'axios'
-import eventbrite from 'eventbrite'
-
-const sdk = eventbrite({token: 'AF36NVFKHSLG27TQBBWF'})
+import mockData from '../../server/api/mock-event'
 
 export default class allEvents extends Component {
   constructor() {
@@ -14,9 +13,6 @@ export default class allEvents extends Component {
   }
 
   async componentDidMount() {
-    // sdk.request('/users/me').then(res => {
-    //   console.log(res)
-    // })
     const res = await axios.get('/api/events')
     const events = res.data
     console.table('dringus', events)
@@ -28,24 +24,19 @@ export default class allEvents extends Component {
     return (
       <div>
         <h2> All Events:</h2>
-
-        {/* <h3>Drake</h3>
-        <img
-          onClick={() => history.push('/event')}
-          src="https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg"
-        /> */}
         {this.state.events.map(event => {
           return (
-            <div key={event.id}>
+            <div className="event-list" key={event.id}>
               <h3>
-                <a onClick={() => history.push('/event')}>{event.name}</a>
+                <Link to={`/events/${event.id}`}>{event.name.text}</Link>
               </h3>
-              <div>{event.date}</div>
+              <div>Date: {event.start.local}</div>
+              <img src={event.logo} onClick={() => history.push('/event')} />
+              <br />
               <br />
             </div>
           )
         })}
-
       </div>
     )
   }

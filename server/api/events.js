@@ -1,14 +1,49 @@
 const express = require('express')
 const router = express.Router()
 const {FunEvent} = require('../db/models/index')
+const MockResponse = require('./mock-event')
 
-// Get all events
+var eventbriteAPI = require('node-eventbrite')
+var token = 'AF36NVFKHSLG27TQBBWF'
+
+const api = eventbriteAPI({
+  token: token,
+  version: 'v3'
+})
+
+async function getEvents() {
+  var res = await api.search({q: 'join launch ', price: 'free'}, function(
+    error,
+    data
+  ) {
+    if (error) {
+      // console.log(error.message)
+      console.log('ERROR')
+      console.log(error.message)
+      const MoRes = MockResponse.slice(0, 1)
+      console.log(MoRes)
+      return MoRes
+    } else return data.events.slice(0, 1) // Do something with your data!
+  })
+  console.log('RES:', res)
+  return res
+}
+//const events = getEvents()
+//console.log('EVENTS', events.then(event => console.log(event)))
+
 router.get('/', async function(req, res, next) {
+  console.log('In the "all events" route!')
+
   try {
-    const event = await FunEvent.findAll()
-    console.log('All Events!')
-    res.status(200).send(event)
+    // const dataBaseEvents = await FunEvent.findAll()
+    // const events = await getEvents()
+    const events = MockResponse.slice(0, 3)
+    // events.pop('text')
+    // events.pop('html')
+    console.log('eventbriteee:', events)
+    res.status(200).send(events)
   } catch (error) {
+    console.log('error in events.js')
     next(error)
   }
 })
