@@ -5,6 +5,8 @@ import axios from 'axios'
 import {me} from '../store'
 import {putContract, loadContracts} from '../store/contract'
 import history from '../history'
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 class Inbox extends Component {
   constructor(props) {
@@ -21,14 +23,21 @@ class Inbox extends Component {
     console.log('user id', this.props.user)
     console.log('this state userContracts', this.props.userContracts)
   }
+  notifyConf = () => toast(' 😊  You have confirmed!')
+  notifyDecl = () => toast(' 🙁  You have declined.')
+  
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
+
+    this.notifyConf()
+
   }
 
   handleDecline(e) {
     console.log('Sorry, I do not want to go!')
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
+    this.notifyDecl()
   }
   render() {
     const inboxEvents = this.props.userContracts || []
@@ -66,7 +75,12 @@ class Inbox extends Component {
                   Would you like to attend this event? By clicking 'Confirm' you
                   agree to JOYNing this event!
                 </p>
+
                 <p>We'll take over from here 😊</p>
+                  
+                <ToastContainer transition={Zoom}/>
+                <ToastContainer transition={Zoom}/>
+         
                 <button
                   type="button"
                   value={event.id}
@@ -74,6 +88,7 @@ class Inbox extends Component {
                 >
                   Confirm
                 </button>
+                
                 <button
                   type="button"
                   value={event.id}
@@ -81,7 +96,7 @@ class Inbox extends Component {
                 >
                   Decline
                 </button>
-
+                
                 <button type="button" value={event.id}
                 onClick={() => history.push(`/event/${event.id}`)}>
                   Event Info
