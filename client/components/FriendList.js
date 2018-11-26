@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {postContract} from '../store/contract'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 class FriendList extends Component {
@@ -31,13 +33,16 @@ class FriendList extends Component {
             })
         }
     }
+    notify = () => toast('Your invites have been sent!')
+
     handleOnSubmit(){
- 
+
         this.props.createContract({
             eventId: 78900,
             friends: [...this.state.chosenFriends, this.props.user.id]
         })
         console.log('You are going with', this.state.chosenFriends, '!')
+        this.notify()
     }
 
     render() {
@@ -68,9 +73,10 @@ class FriendList extends Component {
           }
         </tbody>
       </table>
-
+  <div>
     <button type="button" onClick={this.handleOnSubmit}>Ask Your Friends To JOIN!</button>
-
+    <ToastContainer />
+  </div>
     </div>
   )
 }
