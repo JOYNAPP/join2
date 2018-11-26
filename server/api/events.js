@@ -25,15 +25,18 @@ async function getEvents() {
   })
   return res
 }
-const events = getEvents()
-console.log('EVENTS', events.then(event => console.log(event)))
+//const events = getEvents()
+//console.log('EVENTS', events.then(event => console.log(event)))
 
 router.get('/', async function(req, res, next) {
   console.log('In the "all events" route!')
 
   try {
     // const dataBaseEvents = await FunEvent.findAll()
-    const events = await getEvents()
+    //const events = await getEvents()
+    const events = MockResponse
+    // events.pop('text')
+    // events.pop('html')
     console.table('eventbrite:', events)
     res.status(200).send(events)
   } catch (error) {
