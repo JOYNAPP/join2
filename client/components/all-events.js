@@ -29,12 +29,13 @@ export default class allEvents extends Component {
       <div>
         {this.state.events &&
           this.state.events.map(event => {
+            const date = new Date(event.start.local).toDateString()
             return (
               <div className="event-list" key={event.id}>
                 <h3>
                   <Link to={`/events/${event.id}`}>{event.name.text}</Link>
                 </h3>
-                <div>Date: {event.start.local}</div>
+                <div>Date: {date}</div>
                 <p>
                   {event.description.text.length > 399
                     ? event.description.text.slice(0, 400) + '...'
