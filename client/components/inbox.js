@@ -80,8 +80,9 @@ class Inbox extends Component {
                   
                 <ToastContainer transition={Zoom}/>
                 <ToastContainer transition={Zoom}/>
-         
-                <button
+                
+                <button 
+                  className="confirm"
                   type="button"
                   value={event.id}
                   onClick={this.handleConfirm}
@@ -90,6 +91,7 @@ class Inbox extends Component {
                 </button>
                 
                 <button
+                  className="decline"
                   type="button"
                   value={event.id}
                   onClick={this.handleDecline}
@@ -97,7 +99,7 @@ class Inbox extends Component {
                   Decline
                 </button>
                 
-                <button type="button" value={event.id}
+                <button className="event-info" type="button" value={event.id}
                 onClick={() => history.push(`/event/${event.id}`)}>
                   Event Info
                 </button>
