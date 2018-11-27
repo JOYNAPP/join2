@@ -19,7 +19,7 @@ class Inbox extends Component {
     // make axios(test)/API call to get the events represented by the ids
     // Set local state
     this.props.actions.loadInitialData()
-    this.props.actions.loadContracts(2)
+    this.props.actions.loadContracts(this.props.user.id)
     console.log('user id', this.props.user)
     console.log('this state userContracts', this.props.userContracts)
   }
@@ -99,8 +99,10 @@ class Inbox extends Component {
                   Decline
                 </button>
                 
-                <button className="event-info" type="button" value={event.id}
-                onClick={() => history.push(`/event/${event.id}`)}>
+
+                <button type="button" value={event.id}
+                onClick={() => history.push(`/events/${event.id}`)}>
+
                   Event Info
                 </button>
               </div>
