@@ -22,8 +22,8 @@ function unanswered(item) {
 }
 
 const createBlock = (ourData) => {
- // return axios.post('https://join-block.herokuapp.com/mineBlock', {data: ourData})
- return axios.post('http://localhost:3001/mineBlock', {data: ourData})
+   return axios.post('https://join-block.herokuapp.com/mineBlock', {data: ourData})
+ //return axios.post('http://localhost:3001/mineBlock', {data: ourData})
  .then(res => res.data)
     .catch(error => console.log(error));
 }
