@@ -17,7 +17,6 @@ export default class allEvents extends Component {
       `https://www.eventbriteapi.com/v3/events/search/?q=$drake&token=AF36NVFKHSLG27TQBBWF`
     )
     const events = res.data.events
-    console.log('dringus', events)
     this.setState({events: events})
     console.table(events)
   }
