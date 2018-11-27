@@ -7,10 +7,10 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="Navbar">
     {/* <h1>JOYN</h1> */}
-    <img src="./logo.png" className="center"/>
     <nav>
       {isLoggedIn ? (
         <div >
+        <img src="./logo.png" className="left"/>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/events">Events</Link>
@@ -22,6 +22,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+          <img src="./logo.png" className="left"/>
+
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
