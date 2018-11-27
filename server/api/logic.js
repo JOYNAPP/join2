@@ -21,6 +21,13 @@ function unanswered(item) {
   return false;
 }
 
+// function getMine(item) {
+//   if (item.userId === receiver.id) {
+//     return true;
+//   }
+//   return false;
+// }
+
 const createBlock = (ourData) => {
    return axios.post('https://join-block.herokuapp.com/mineBlock', {data: ourData})
  //return axios.post('http://localhost:3001/mineBlock', {data: ourData})
@@ -56,8 +63,10 @@ router.post('/', (req, res, next) => {
                })
         }
             ).then(conts => {
-              var didntRespond = conts.filter(unanswered);
+              console.log('conts', conts[0])
+              let didntRespond = conts.filter(unanswered);
               const stragglers = didntRespond.map(a => a.userId);
+              const myContract = conts.filter(contract => contract.userId === receiver.id);
               if (! didntRespond.length){
                 Contract.findOne({ //find contract in question based on contract ID and user id
                   where: {
@@ -76,7 +85,7 @@ router.post('/', (req, res, next) => {
 
               }
               else {
-                res.json(stragglers) //This sends back an array of User IDs of people who have yet to respond
+                res.json({contract: myContract, stragglers: stragglers}) //This sends back an array of User IDs of people who have yet to respond
               }
               }
 

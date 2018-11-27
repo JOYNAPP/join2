@@ -34,7 +34,6 @@ class Inbox extends Component {
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
-    this.props.actions.loadContracts(this.props.user.id)
     this.notifyConf()
   }
 
@@ -46,6 +45,7 @@ class Inbox extends Component {
   render() {
     const confirmedEvents = this.props.userConfirmContracts
     const inboxEvents = this.props.userContracts || []
+    console.log('inboxEvents', inboxEvents)
     if (inboxEvents.length === 0) {
       return (
         <div className="inboxError">
@@ -66,6 +66,7 @@ class Inbox extends Component {
           <h2> Inbox:</h2>
           {
             inboxEvents.map(event => {
+              console.log('event', event)
             const responded = event.userContract.responded
             const response = event.userContract.response
             console.log('event', event)

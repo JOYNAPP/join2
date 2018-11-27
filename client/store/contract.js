@@ -59,7 +59,7 @@ export const putContract = (response) => {
     try {
       const res = await axios.post(`/api/logic/`, response)
       console.log('response in thunk', res)
-      const contract = res.data
+      const contract = res.data.contract[0]
       console.log('contract', contract)
       const action = respondToContract(contract)
       dispatch(action)
@@ -91,7 +91,10 @@ export default function(state = initialState, action) {
     case GET_ALL_CONTRACTS:
       return { ...state, allContracts: action.contracts}
     case RESPOND_CONTRACT:
-      return {...state, singleContract: action.contract}
+    const myContract = state.userContracts.filter(contract => contract.id === action.response.contractId)
+    myContract[0].userContract = action.response
+    const filteredContracts = state.userContracts.filter(contract => contract.id !== action.response.contractId)
+      return {...state, singleContract: action.contract, userContracts: [...filteredContracts, myContract[0]]}
     case GET_USER_CONTRACTS:
       return {...state, userContracts: action.contracts, userConfirmContracts: action.confirmContracts}
     default:

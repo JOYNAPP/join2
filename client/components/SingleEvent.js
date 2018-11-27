@@ -10,6 +10,7 @@ class SingleEvent extends Component {
     super(props)
     this.state = {
       event: {}
+
     }
   }
 
