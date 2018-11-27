@@ -7,6 +7,7 @@ import {
   Login,
   Signup,
   UserHome,
+  MyEvents,
   SignupNew,
   AllEvents,
   Inbox
@@ -34,8 +35,10 @@ class Routes extends Component {
         <Route exact path="/events" component={AllEvents} />
 
         <Route exact path="/events/:eventId" component={SingleEvent} />
+        <Route path="/myEvents" component={MyEvents} />
 
         <Route path="/inbox" component={Inbox} />
+
 
         {isLoggedIn && (
           <Switch>
@@ -60,6 +63,7 @@ const mapState = state => {
     isLoggedIn: !!state.user.id
   }
 }
+
 
 const mapDispatch = dispatch => {
   return {

@@ -12,7 +12,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
         <div >
         <img src="./logo.png" className="left"/>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">{user.name}'s Events</Link>
+          <Link to="/MyEvents">{user.name}'s Events</Link>
           <Link to="/events">Events</Link>
           <Link to="/inbox">Inbox</Link>
           <a href="#" onClick={handleClick}>
