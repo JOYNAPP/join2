@@ -45,6 +45,20 @@ const seed = async () => {
     eventId: 3
   })
 
+  const beyonceEvent = await FunEvent.create({
+    name: 'Beyonce',
+    id: 1,
+    date: 'February 2',
+    imgUrl: 'https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg'
+  })
+
+  const stingEvent = await FunEvent.create({
+    name: 'Sting',
+    id: 2,
+    date: 'March 3',
+    imgUrl: 'https://hollywoodstreetking.com/wordpress/wp-content/uploads/2017/03/drake-fans-boycott-concert.jpg'
+  })
+
   await Promise.all([
     beyonce.setUsers(maggie),
     cody.setContracts(sting),
