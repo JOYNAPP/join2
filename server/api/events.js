@@ -3,8 +3,8 @@ const router = express.Router()
 const {FunEvent} = require('../db/models/index')
 const MockResponse = require('./mock-event')
 
-var eventbriteAPI = require('node-eventbrite')
-var token = 'AF36NVFKHSLG27TQBBWF'
+const eventbriteAPI = require('node-eventbrite')
+const token = 'AF36NVFKHSLG27TQBBWF'
 
 const api = eventbriteAPI({
   token: token,
@@ -20,9 +20,9 @@ async function getEvents() {
       // console.log(error.message)
       console.log('ERROR')
       console.log(error.message)
-      const MoRes = MockResponse.slice(0, 1)
-      console.log(MoRes)
-      return MoRes
+      // const MoRes = MockResponse.slice(0, 1)
+      // console.log(MoRes)
+      // return MoRes
     } else return data.events.slice(0, 1) // Do something with your data!
   })
   console.log('RES:', res)
@@ -36,8 +36,8 @@ router.get('/', async function(req, res, next) {
 
   try {
     // const dataBaseEvents = await FunEvent.findAll()
-    // const events = await getEvents()
-    const events = MockResponse.slice(0, 3)
+    const events = await getEvents()
+    // const events = MockResponse.slice(0, 10)
     // events.pop('text')
     // events.pop('html')
     console.log('eventbriteee:', events)
