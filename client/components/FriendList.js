@@ -47,17 +47,16 @@ class FriendList extends Component {
 
     render() {
     const friends = this.props.friends
-
+    if (this.state.clickedInvite) {
+      return (
+          <div>You wanna go!</div>
+      )
+  } else {
   return (
 
     <div>
       <h3 className='friend-list'>Choose Friends:</h3>
-
       <table>
-        <thead>
-          <tr>
-          </tr>
-        </thead>
         <tbody>
           {
             friends.filter(friend => friend.id !== this.props.user.id ).map(friend =>
@@ -79,6 +78,7 @@ class FriendList extends Component {
   </div>
     </div>
   )
+        }
 }
 }
 
