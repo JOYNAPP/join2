@@ -100,7 +100,7 @@ class Inbox extends Component {
                 </button>
                 
 
-                <button type="button" value={event.id}
+                <button type="button" className="event-info" value={event.id}
                 onClick={() => history.push(`/events/${event.id}`)}>
 
                   Event Info
