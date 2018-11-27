@@ -7,6 +7,9 @@ import { fetchAllUsers, loadContracts, me, fetchEvent} from '../store';
 class SingleEvent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            clickedInvite: false
+        }
         console.log('something in single event')
     }
 
@@ -25,11 +28,13 @@ class SingleEvent extends Component {
         const event = this.props.event
         console.log('props', this.props)
         console.log('user', user)
+
         return (
         // {
             //if user is already INVITED to event loading, show 'YOURE INVITED' view
             //if use if already GOING to event loading, show 'YAY YOURE GOING' view
         // }
+        
             <div>
                 <div className='grid-child'>
                 <div className='user-orders'>
