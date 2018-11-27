@@ -35,10 +35,9 @@ html, body, .viewport {
   left: 0;
 }
 
-#Navbar .center {
+#Navbar .logo {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  float: left;
   width: 40%;
   height: 30%;
 }
