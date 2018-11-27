@@ -15,7 +15,8 @@ const GET_USER_CONTRACTS ='GET_USER_CONTRACTS'
 const initialState = {
   allContracts: [],
   singleContract: {},
-  userContracts: []
+  userContracts: [],
+  userConfirmContracts: []
 }
 
 /**
@@ -24,7 +25,7 @@ const initialState = {
 export const getAllContracts = () => ({type: GET_ALL_CONTRACTS})
 export const addContract = (contract) => ({type: ADD_CONTRACT, contract})
 export const respondToContract = (response) => ({type: RESPOND_CONTRACT, response})
-export const getUserContracts = (contracts) => ({type: GET_USER_CONTRACTS, contracts})
+export const getUserContracts = (contracts, confirmContracts) => ({type: GET_USER_CONTRACTS, contracts, confirmContracts})
 /**
  * THUNK CREATORS
  */
@@ -73,7 +74,8 @@ export const loadContracts = (userId) => {
     try {
       const res = await axios.get(`/api/userContract/${userId}/users`)
       const contracts = res.data.contracts
-      const action = getUserContracts(contracts)
+      const confirmContracts = contracts.filter(contract => contract.userContract.response)
+      const action = getUserContracts(contracts, confirmContracts)
       dispatch(action)
     } catch(err) {
       console.error(err)
@@ -91,7 +93,7 @@ export default function(state = initialState, action) {
     case RESPOND_CONTRACT:
       return {...state, singleContract: action.contract}
     case GET_USER_CONTRACTS:
-      return {...state, userContracts: action.contracts}
+      return {...state, userContracts: action.contracts, userConfirmContracts: action.confirmContracts}
     default:
       return state
   }

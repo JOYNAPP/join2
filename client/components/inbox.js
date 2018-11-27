@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css'
 class Inbox extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      clicked: false
+    }
     this.handleConfirm = this.handleConfirm.bind(this)
     this.handleDecline = this.handleDecline.bind(this)
   }
@@ -23,15 +26,18 @@ class Inbox extends Component {
     console.log('user id', this.props.user)
     console.log('this state userContracts', this.props.userContracts)
   }
+
+  
   notifyConf = () => toast(' 😊  You have confirmed!')
   notifyDecl = () => toast(' 🙁  You have declined.')
   
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
-
     this.notifyConf()
-
+    this.setState({
+      clicked: true
+    })
   }
 
   handleDecline(e) {
@@ -91,8 +97,7 @@ class Inbox extends Component {
                     className="confirm"
                     type="button"
                     value={event.id}
-                    onClick={this.handleConfirm}
-                  >
+                    onClick={this.handleConfirm}>
                     Confirm
                   </button>
                   
@@ -100,20 +105,18 @@ class Inbox extends Component {
                     className="decline"
                     type="button"
                     value={event.id}
-                    onClick={this.handleDecline}
-                  >
+                    onClick={this.handleDecline}>
                     Decline
                   </button>
 
                  <button type="button" className="event-info" value={event.id}
-                 onClick={() => history.push(`/events/${event.id}`)}>
-
-                  Event Info
+                    onClick={() => history.push(`/events/${event.id}`)}>
+                    Event Info
                   </button>
                   <hr />
                 </div>
              )
-            } else {
+            } else if (response) {
               return (
                 <div>
                   <h3>You've responded {response ? 'Yes' : 'No'} to: {event.id}</h3>
@@ -121,9 +124,14 @@ class Inbox extends Component {
                   <h5>{event.date}</h5>
                   <h5>{event.ticketPrice}</h5>
                   <h5>Friends Also Invited: {friends.join(', ')}!</h5>
+                  <button type="button" className="event-info" value={event.id}
+                    onClick={() => history.push(`/events/${event.id}`)}>
+                    Event Info
+                  </button>
                   <hr />
                 </div>
               )
+            
             }
 
            })
@@ -137,7 +145,8 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user,
-    userContracts: state.contract.userContracts
+    userContracts: state.contract.userContracts,
+    userConfirmContracts: state.contract.userConfirmContracts
   }
 }
 
