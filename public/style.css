@@ -142,4 +142,18 @@ img {
   display: inline-block;
 }
 
+.card {
+  /* display: inline-block; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  padding: 10px 10px;
+  border: 1px solid white;
+  border-radius: 8px;
+  text-align: justify;
+}
 
+.card-img-top {
+  margin-left: auto;
+  margin-right: auto;
+}
