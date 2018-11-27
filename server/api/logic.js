@@ -80,7 +80,7 @@ router.post('/', (req, res, next) => {
                     ).then(
                       createBlock({time: new Date(), contractId: req.body.contractId}))
                     .then(createdBlock => {
-                                            res.json(createdBlock)
+                                            res.json({confirmation:'confirmed'})
                                           })
 
               }

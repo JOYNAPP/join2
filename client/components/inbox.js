@@ -111,6 +111,7 @@ class Inbox extends Component {
                     Decline
                   </button>
 
+
                  <button type="button" className="event-info" value={event.id}
                     onClick={() => history.push(`/events/${event.id}`)}>
                     Event Info
@@ -135,6 +136,7 @@ class Inbox extends Component {
               )
             
             }
+
 
            })
           }
