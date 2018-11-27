@@ -22,8 +22,9 @@ function unanswered(item) {
 }
 
 const createBlock = (ourData) => {
-  return axios.post('https://join2-blockchain.herokuapp.com/mineBlock', {data: ourData})
-    .then(res => res.data)
+   return axios.post('https://join-block.herokuapp.com/mineBlock', {data: ourData})
+ //return axios.post('http://localhost:3001/mineBlock', {data: ourData})
+ .then(res => res.data)
     .catch(error => console.log(error));
 }
 
@@ -67,7 +68,8 @@ router.post('/', (req, res, next) => {
                       fulfilled: true
                     })
                    }
-                    ).then(createBlock({time: new Date(), party1: req.body.contractId, party2: 'party3'}))
+                    ).then(
+                      createBlock({time: new Date(), contractId: req.body.contractId}))
                     .then(createdBlock => {
                                             res.json(createdBlock)
                                           })
