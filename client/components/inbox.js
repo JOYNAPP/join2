@@ -34,10 +34,8 @@ class Inbox extends Component {
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
+    this.props.actions.loadContracts(this.props.user.id)
     this.notifyConf()
-    this.setState({
-      clicked: true
-    })
   }
 
   handleDecline(e) {
@@ -46,6 +44,7 @@ class Inbox extends Component {
     this.notifyDecl()
   }
   render() {
+    const confirmedEvents = this.props.userConfirmContracts
     const inboxEvents = this.props.userContracts || []
     if (inboxEvents.length === 0) {
       return (
@@ -71,10 +70,12 @@ class Inbox extends Component {
             const response = event.userContract.response
             console.log('event', event)
             console.log('responded', responded)
+
             const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
               return `${friend.name}`
             })
-            if (!responded) {
+
+            if (!confirmedEvents.includes(event) && !responded) {
 
            
             return (
@@ -116,9 +117,9 @@ class Inbox extends Component {
                   <hr />
                 </div>
              )
-            } else if (response) {
+            } else if (confirmedEvents.includes(event) && response) {
               return (
-                <div>
+                <div key={event.id}>
                   <h3>You've responded {response ? 'Yes' : 'No'} to: {event.id}</h3>
                   <h3>{event.name}</h3>
                   <h5>{event.date}</h5>
