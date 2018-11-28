@@ -35,12 +35,12 @@ html, body, .viewport {
   left: 0;
 }
 
-#Navbar .logo {
+/* #Navbar .logo {
   display: block;
   float: left;
   width: 40%;
   height: 30%;
-}
+} */
 
 main {
   color: white;
@@ -70,7 +70,7 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 2.5em 4.5em 1.5em;
+  margin: 2.5em 1em 1.5em;
 }
 
 #subtitle {
@@ -83,7 +83,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-img {
+#Navbar img {
     height: 150px;
 }
 
@@ -101,7 +101,7 @@ img {
 }
 
 #app {
-  color: #ffffff;
+  color: rgb(72, 55, 149);
   outline: black;
 }
 
@@ -149,17 +149,37 @@ img {
 }
 
 .card {
-  /* display: inline-block; */
-  margin-left: auto;
-  margin-right: auto;
-  width: 350px;
-  padding: 10px 10px;
+  display: inline-block;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  /* flex-wrap: wrap; */
+  margin-left: 80px;
+  margin-right: 50px;
+  
+  width: 400px;
+  height: 500px;
+  padding: 20px 20px;
   border: 1px solid white;
-  border-radius: 8px;
+  border-radius: 6px;
   text-align: justify;
+  color: white;
 }
 
 .card-img-top {
   margin-left: auto;
   margin-right: auto;
+  width: 350px;
+  display: block;
 }
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold; 
+}
+
+.date {
+  font-size: 16px;
+  color:rgb(72, 55, 149);
+}
+

@@ -28,34 +28,38 @@ class allEvents extends Component {
     const events = this.state.events || []
     console.log('THESE EVENTS:', this.state.events)
     return (
-      <div>
+      <div className="container">
           <h4 id="subtitle">Welcome to JOYN, {this.props.user.name}! Where you invite friends to exciting, upcoming events, and only when everyone confirms will we buy the tickets! <font color="#0B96A8">Attend Events Together. JOYN!</font> 😊</h4>
         <hr />
+
         {this.state.events &&
           this.state.events.map(event => {
             const date = new Date(event.start.local).toDateString()
             return (
+              
               <div className="card" key={event.id}>
+                {event.logo ? (
+                  <img className="card-img-top" alt="Card image cap" src={event.logo.url} />
+                ) : (
+                  <img className="card-img-top" alt="Card image cap" src="https://allmods.net/wp-content/uploads/2018/08/no-image-available.png" />
+                )}
                 <div className="card-body">
                 <h3 className="card-title">
                   <Link to={`/events/${event.id}`}>{event.name.text}</Link>
                 </h3>
-                <div>Date: {date}</div>
+                <div className="date"><p>Date: {date}</p></div>
                 <p className="card-text">
                   {event.description.text.length > 399
                     ? event.description.text.slice(0, 400) + '...'
                     : event.description.text}
                 </p>
-                {event.logo ? (
-                  <img className="card-img-top" src={event.logo.url} />
-                ) : (
-                  <img src="https://allmods.net/wp-content/uploads/2018/08/no-image-available.png" />
-                )}
                 <br />
                 <br />
               </div>
+        
             </div>
             )
+    
           })}
         </div>
     )
