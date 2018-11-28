@@ -106,7 +106,7 @@ class Inbox extends Component {
 
 
                  <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.id}`)}>
+                    onClick={() => history.push(`/events/${event.eventId}`)}>
                     Event Info
                   </button>
                   <hr />
@@ -119,7 +119,7 @@ class Inbox extends Component {
                   <h4>on {new Date(event.eventDate).toDateString()}</h4>
                   <h4>with {friends.join(', ')}!</h4>
                   <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.id}`)}>
+                    onClick={() => history.push(`/events/${event.eventId}`)}>
                     Event Info
                   </button>
                   <hr />

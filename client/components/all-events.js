@@ -29,7 +29,7 @@ class allEvents extends Component {
     console.log('THESE EVENTS:', this.state.events)
     return (
       <div>
-          <h4 id="subtitle">Welcome to JOYN, {this.props.user.name}! Where you invite friends to exciting, upcoming events, and only when everyone confirms will we buy the tickets! <font color="#0B96A8">Attend Events Together. JOYN!</font></h4>
+          <h4 id="subtitle">Welcome to JOYN, {this.props.user.name}! Where you invite friends to exciting, upcoming events, and only when everyone confirms will we buy the tickets! <font color="#0B96A8">Attend Events Together. JOYN!</font> 😊</h4>
         <hr />
         {this.state.events &&
           this.state.events.map(event => {
