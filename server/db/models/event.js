@@ -3,6 +3,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const FunEvent = db.define('event', {
+  id: {
+    type: Sequelize.BIGINT,
+    primaryKey: true
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -12,7 +16,7 @@ const FunEvent = db.define('event', {
     allowNull: false
   },
   ticketPrice: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.BIGINT,
     allowNull: false,
     defaultValue: 0
   },
