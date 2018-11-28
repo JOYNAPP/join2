@@ -29,17 +29,19 @@ class allEvents extends Component {
     console.log('THESE EVENTS:', this.state.events)
     return (
       <div className="container">
-        <div>
+        <div id ="subtitle">
           <br />
           <br />
-          <br />
-          <br />
-          <h4 id="subtitle">
+          <hr/>
+          <h4>
             Welcome to JOYN, {this.props.user.name}! Where you invite friends to
-            exciting, upcoming events, and only when everyone confirms will we
-            buy the tickets!{' '}
-            <font color="#0B96A8">Attend Events Together. JOYN!</font> � �
+            exciting, upcoming events. 
           </h4>
+          <h4>
+            Only when everyone confirms will we buy the tickets.{' '}
+            <font color="#2e7482">Attend Events Together. JOYN!</font>
+          </h4>
+          <hr/>
           <br />
         </div>
         {this.state.events &&

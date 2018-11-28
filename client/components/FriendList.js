@@ -75,7 +75,7 @@ class FriendList extends Component {
         </tbody>
       </table>
   <div>
-    <button type="button" className="confirm" onClick={this.handleOnSubmit}>Ask Your Friends To JOYN!</button>
+    <button type="button" className="event-info" onClick={this.handleOnSubmit}>Ask Your Friends To JOYN!</button>
     <ToastContainer />
   </div>
     </div>

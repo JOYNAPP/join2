@@ -181,8 +181,7 @@ form div {
 
 
 .confirm {
-  background-color: rgb(72, 55, 149);
-
+  background-color: rgba(223, 201, 206, 0.5);
   border: none;
   color: black;
   font-size: 16px;
@@ -198,8 +197,7 @@ form div {
 .card {
   display: inline-block;
 
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 2px solid white;
+  background-color: rgba(255, 255, 255, 0.2);
   color: black;
 
   /* flex-direction: row; */
