@@ -9,6 +9,7 @@ const RESPOND_CONTRACT = 'RESPOND_CONTRACT'
 const GET_USER_CONTRACTS ='GET_USER_CONTRACTS'
 
 const SELECT_MYCONTRACT = 'SELECT_MYCONTRACT'
+const SELECT_MYINV = 'SELECT_MYINV'
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const initialState = {
   userContracts: [],
   userConfirmContracts: [],
 
+  selectedMyInv: [],
   selectedMyContract: {},
 }
 
@@ -36,6 +38,10 @@ const selectCont = MyContract => ({
   MyContract: MyContract
 })
 
+const selectInv = MyInv => ({
+  type: SELECT_MYINV,
+  MyInv: MyInv
+})
 /**
  * THUNK CREATORS
  */
@@ -48,7 +54,15 @@ export const selectMyContractById = id => async dispatch => {
   }
 }
 
-
+export const selectMyInvById = id => async dispatch => {
+ try {
+   const {data: MyContract1} = await axios.get(`/api/userContract/${id}`)
+const MyContract = MyContract1.contracts.filter(contract => !contract.userContract.responded)
+dispatch(selectInv(MyContract))
+ } catch (err) {
+   console.error(err)
+ }
+}
 
 export const fetchAllContracts = () => async dispatch => {
   let res
@@ -126,6 +140,9 @@ export const contractReducer = (state = initialState, action) => {
       return { ...state, allContracts: action.contracts}
     case SELECT_MYCONTRACT:
       return {...state, selectedMyContract: action.MyContract}
+    case SELECT_MYINV:
+      return {...state, selectedMyInv: action.MyInv}
+
     case RESPOND_CONTRACT:
     const myContract = state.userContracts.filter(contract => contract.id === action.response.contractId)
     myContract[0].userContract = action.response

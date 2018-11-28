@@ -1,171 +1,66 @@
 import React, {Component} from 'react'
-import {withRouter, NavLink} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import axios from 'axios'
-import {me} from '../store'
-import {putContract, loadContracts} from '../store/contract'
-import history from '../history'
-import { ToastContainer, toast, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import {selectMyInvById} from '../store/contract'
 
 class Inbox extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      clicked: false
-    }
-    this.handleConfirm = this.handleConfirm.bind(this)
-    this.handleDecline = this.handleDecline.bind(this)
+  super(props)
+  this.state = {
+    clicked: false
   }
-componentDidMount() {
-    // make axios call to get all user's inviedToEvents ids (how to get user id?)
-    // make axios(test)/API call to get the events represented by the ids
-    // Set local state
-   //this.props.actions.loadInitialData()
-   this.props.actions.loadContracts(this.props.user.id)
-   // console.log('user id', this.props.user)
-   // console.log('this state userContracts', this.props.userContracts)
-  }
-
-
-  notifyConf = () => toast(' 😊  You have confirmed!')
-  notifyDecl = () => toast(' 🙁  You have declined.')
-
-  handleConfirm(e) {
-    // console.log('I want to go!', e.target.value)
-    this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
-    this.props.actions.loadContracts(this.props.user.id)
-    this.notifyConf()
-  }
-
-  handleDecline(e) {
-    // console.log('Sorry, I do not want to go!')
-    this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
-    this.notifyDecl()
-  }
-  render() {
-    const confirmedEvents = this.props.userConfirmContracts
-    const inboxEvents = this.props.userContracts || []
-    if (inboxEvents.length === 0) {
-      return (
-        <div className="inboxError">
-          <h1>Invitations</h1>
-          <div className="error">
-            Your inbox does not contain any invitations yet.
-          </div>
-          <button type="button">
-            <NavLink to="/events" className="return">
-              Explore Events
-            </NavLink>
-          </button>
-        </div>
-      )
-    } else {
-      return (
-        <div className='inbox'>
-          <h2> Inbox:</h2>
-          {
-            inboxEvents.map(event => {
-            const responded = event.userContract.responded
-            const response = event.userContract.response
-            console.log('event', event)
-            console.log('responded', responded)
-
-            const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
-              return `${friend.name}`
-            })
-
-            if (!confirmedEvents.includes(event) && !responded) {
-
-
-            return (
-                <div key={event.id}>
-                  <h3>Event Id: {event.id}</h3>
-                  <h3>{event.name}</h3>
-                  <h5>{event.date}</h5>
-                  <h5>{event.ticketPrice}</h5>
-                  <h5>Friends Also Invited: {friends.join(', ')}!</h5>
-                  <p>
-                    Would you like to attend this event? By clicking 'Confirm' you
-                    agree to JOYNing this event!
-                  </p>
-                  <p>We'll take over from here 😊</p>
-
-                  <ToastContainer transition={Zoom}/>
-                  <ToastContainer transition={Zoom}/>
-
-                  <button
-                    className="confirm"
-                    type="button"
-                    value={event.id}
-                    onClick={this.handleConfirm}>
-                    Confirm
-                  </button>
-
-                  <button
-                    className="decline"
-                    type="button"
-                    value={event.id}
-                    onClick={this.handleDecline}>
-                    Decline
-                  </button>
-
-
-                 <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.id}`)}>
-                    Event Info
-                  </button>
-                  <hr />
-                </div>
-             )
-            } else if (confirmedEvents.includes(event) && response) {
-              return (
-                <div key={event.id}>
-                  <h3>You've responded {response ? 'Yes' : 'No'} to: {event.id}</h3>
-                  <h3>{event.name}</h3>
-                  <h5>{event.date}</h5>
-                  <h5>{event.ticketPrice}</h5>
-                  <h5>Friends Also Invited: {friends.join(', ')}!</h5>
-                  <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.id}`)}>
-                    Event Info
-                  </button>
-                  <hr />
-                </div>
-              )
-
-            }
-
-
-           })
-          }
-        </div>
-      )
-    }
-  }
+  this.handleConfirm = this.handleConfirm.bind(this)
+  this.handleDecline = this.handleDecline.bind(this)
 }
+
+
+async componentDidMount() {
+  await this.props.selectMyInvById(this.props.user.id)
+  }
+
+notifyConf = () => toast(' 😊  You have confirmed!')
+notifyDecl = () => toast(' 🙁  You have declined.')
+
+
+handleConfirm(e) {
+  // console.log('I want to go!', e.target.value)
+  this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
+  this.props.actions.selectMyInvById(this.props.user.id)
+  this.notifyConf()
+}
+
+handleDecline(e) {
+  // console.log('Sorry, I do not want to go!')
+  this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
+  this.notifyDecl()
+}
+
+
+
+render() {
+  console.log('props', this.props)
+  const inboxEvents = this.props.selectedMyInv
+  console.log(typeof this.props.selectedMyInv)
+  return(
+    <div>
+    <h2>Mark Your Calendar! 📅 </h2>
+    </div>)
+
+  }
+  }
+
+
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.user.id,
-    user: state.user,
-    userContracts: state.contract.userContracts,
-    userConfirmContracts: state.contract.userConfirmContracts
+    selectedMyInv: state.contracts.selectedMyInv,
+    user: state.user
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: {
-      loadInitialData: function() {
-        dispatch(me())
-      },
-      loadContracts: function(userId) {
-        dispatch(loadContracts(userId))
-      },
-      respondInvite: function(response) {
-        dispatch(putContract(response))
-      }
-    }
-  }
-}
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Inbox))
+const mapDispatchToProps = dispatch => ({
+  selectMyInvById: id => dispatch(selectMyInvById(id)),
+})
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Inbox)
+)
