@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
-import history from '../history'
 import axios from 'axios'
-import mockData from '../../server/api/mock-event'
 import {connect} from 'react-redux'
 import {me} from '../store'
 
@@ -69,7 +67,7 @@ const mapStateToProps = state => {
     user: state.user,
   }
  }
- 
+
  const mapDispatchToProps = dispatch => {
   return {
     actions: {
@@ -79,5 +77,5 @@ const mapStateToProps = state => {
       }
     }
   }
- 
+
  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(allEvents))

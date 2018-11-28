@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 //Other components:
 import Navbar from './navbar'
 import AllEvents from './all-events'
+import MyEvents from './MyEvents'
+
 
 /**
  * COMPONENT
@@ -14,7 +16,9 @@ export const UserHome = props => {
   return (
     <div>
       {/* <h3>Welcome to JOYN, {name}!</h3> */}
+      <MyEvents />
       <AllEvents name={name}/>
+
     </div>
   )
 }

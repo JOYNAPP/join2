@@ -8,6 +8,7 @@ const ADD_CONTRACT = 'ADD_CONTRACT'
 const RESPOND_CONTRACT = 'RESPOND_CONTRACT'
 const GET_USER_CONTRACTS ='GET_USER_CONTRACTS'
 
+const SELECT_MYCONTRACT = 'SELECT_MYCONTRACT'
 
 /**
  * INITIAL STATE
@@ -16,7 +17,9 @@ const initialState = {
   allContracts: [],
   singleContract: {},
   userContracts: [],
-  userConfirmContracts: []
+  userConfirmContracts: [],
+
+  selectedMyContract: {},
 }
 
 /**
@@ -26,9 +29,27 @@ export const getAllContracts = () => ({type: GET_ALL_CONTRACTS})
 export const addContract = (contract) => ({type: ADD_CONTRACT, contract})
 export const respondToContract = (response) => ({type: RESPOND_CONTRACT, response})
 export const getUserContracts = (contracts, confirmContracts) => ({type: GET_USER_CONTRACTS, contracts, confirmContracts})
+
+export const getMyEvents = goingContract => ({type: GET_MY_EVENTS, goingContract})
+const selectCont = MyContract => ({
+  type: SELECT_MYCONTRACT,
+  MyContract: MyContract
+})
+
 /**
  * THUNK CREATORS
  */
+export const selectMyContractById = id => async dispatch => {
+  try {
+    const {data: MyContract} = await axios.get(`/api/userContract/${id}`)
+    dispatch(selectCont(MyContract))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+
+
 export const fetchAllContracts = () => async dispatch => {
   let res
   try {
@@ -36,6 +57,17 @@ export const fetchAllContracts = () => async dispatch => {
     const allContracts = res.data
     const action = getAllContracts(allContracts)
     dispatch(action)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+
+
+export const selectEventById = id => async dispatch => {
+  try {
+    const {data: userContract} = await axios.get(`/api/userContract/${id}`)
+    dispatch(getMyEvents(userContract))
   } catch (err) {
     console.error(err)
   }
@@ -86,10 +118,14 @@ export const loadContracts = (userId) => {
 /**
  * REDUCER
  */
-export default function(state = initialState, action) {
+export const contractReducer = (state = initialState, action) => {
+
+//export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CONTRACTS:
       return { ...state, allContracts: action.contracts}
+    case SELECT_MYCONTRACT:
+      return {...state, selectedMyContract: action.MyContract}
     case RESPOND_CONTRACT:
     const myContract = state.userContracts.filter(contract => contract.id === action.response.contractId)
     myContract[0].userContract = action.response

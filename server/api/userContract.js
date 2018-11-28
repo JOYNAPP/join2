@@ -56,3 +56,19 @@ router.get('/:id/users', async (req, res, next) => {
     next(err)
   }
 })
+
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const events = await User.findById(req.params.id, {
+         include: [{model: Contract , include: {model: User}}]
+    })
+    if (events) {
+      res.json(events)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (err) {
+    next(err)
+  }
+})

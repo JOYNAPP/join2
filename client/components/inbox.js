@@ -11,17 +11,20 @@ import 'react-toastify/dist/ReactToastify.css'
 class Inbox extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      clicked: false
+    }
     this.handleConfirm = this.handleConfirm.bind(this)
     this.handleDecline = this.handleDecline.bind(this)
   }
-  async componentDidMount() {
+componentDidMount() {
     // make axios call to get all user's inviedToEvents ids (how to get user id?)
     // make axios(test)/API call to get the events represented by the ids
     // Set local state
-    this.props.actions.loadInitialData()
-    this.props.actions.loadContracts(this.props.user.id)
-    console.log('user id', this.props.user)
-    console.log('this state userContracts', this.props.userContracts)
+   //this.props.actions.loadInitialData()
+   this.props.actions.loadContracts(this.props.user.id)
+   // console.log('user id', this.props.user)
+   // console.log('this state userContracts', this.props.userContracts)
   }
 
 
@@ -29,21 +32,20 @@ class Inbox extends Component {
   notifyDecl = () => toast(' 🙁  You have declined.')
 
   handleConfirm(e) {
-    console.log('I want to go!', e.target.value)
+    // console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
+    this.props.actions.loadContracts(this.props.user.id)
     this.notifyConf()
   }
 
   handleDecline(e) {
-    console.log('Sorry, I do not want to go!')
+    // console.log('Sorry, I do not want to go!')
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
     this.notifyDecl()
   }
-
   render() {
     const confirmedEvents = this.props.userConfirmContracts
     const inboxEvents = this.props.userContracts || []
-    console.log('inboxEvents', inboxEvents)
     if (inboxEvents.length === 0) {
       return (
         <div className="inboxError">
@@ -61,16 +63,16 @@ class Inbox extends Component {
     } else {
       return (
         <div className='inbox'>
-          <h2> Invitations:</h2>
+          <h2> Inbox:</h2>
           {
             inboxEvents.map(event => {
-              console.log('first event', event)
             const responded = event.userContract.responded
-            console.log('responsed', responded)
             const response = event.userContract.response
-            const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
+            console.log('event', event)
+            console.log('responded', responded)
 
-              return `${friend.name || friend.email} has ${friend.userContract.response ? 'responded yes!' : 'not responded yet 😢'}`
+            const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
+              return `${friend.name}`
             })
 
             if (!confirmedEvents.includes(event) && !responded) {
@@ -78,19 +80,11 @@ class Inbox extends Component {
 
             return (
                 <div key={event.id}>
-                  <h3>{event.eventName}</h3>
-                  <h4>{new Date(event.eventDate).toDateString()}</h4>
-                  <h4><font color="#0B96A8">Friends Also Invited:</font></h4>
-                    <ul>
-                      {
-                    friends.map((friend) => {
-                      return (
-                      <li key={friend.name}><font color="#0B96A8">{friend}</font></li>
-                      )
-                    })
-                  }
-                    </ul>
-                
+                  <h3>Event Id: {event.id}</h3>
+                  <h3>{event.name}</h3>
+                  <h5>{event.date}</h5>
+                  <h5>{event.ticketPrice}</h5>
+                  <h5>Friends Also Invited: {friends.join(', ')}!</h5>
                   <p>
                     Would you like to attend this event? By clicking 'Confirm' you
                     agree to JOYNing this event!
@@ -118,7 +112,7 @@ class Inbox extends Component {
 
 
                  <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.eventId}`)}>
+                    onClick={() => history.push(`/events/${event.id}`)}>
                     Event Info
                   </button>
                   <hr />
@@ -127,11 +121,13 @@ class Inbox extends Component {
             } else if (confirmedEvents.includes(event) && response) {
               return (
                 <div key={event.id}>
-                  <h3>You've responded {response ? '"YES!"' : 'no'} to: {event.eventName}</h3>
-                  <h4>on {new Date(event.eventDate).toDateString()}</h4>
-                  <h4>with {friends.join(', ')}!</h4>
+                  <h3>You've responded {response ? 'Yes' : 'No'} to: {event.id}</h3>
+                  <h3>{event.name}</h3>
+                  <h5>{event.date}</h5>
+                  <h5>{event.ticketPrice}</h5>
+                  <h5>Friends Also Invited: {friends.join(', ')}!</h5>
                   <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.eventId}`)}>
+                    onClick={() => history.push(`/events/${event.id}`)}>
                     Event Info
                   </button>
                   <hr />
@@ -173,41 +169,3 @@ const mapDispatchToProps = dispatch => {
   }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Inbox))
-
-// import {Link} from 'react-router-dom'
-
-// class Inbox extends Component {
-//     constructor(props) {
-//         super(props);
-//     }
-//     render() {
-//       //for now using this.props.inboxEvents, but this will
-//       //have to change later to correspond to correct props name
-//       const inboxEvents = this.props.inboxEvents || [];
-//       if(inboxEvents.length === 0) {
-//         return (
-//           <div className="inboxError">
-//             <h1>Invitations</h1>
-//             <div className="error">
-//               Your inbox does not contain any invitations yet.
-//             </div>
-//             <button className="return" type="button">
-//               <Link to="/events">Explore Events</Link>
-//             </button>
-//           </div>
-//         )
-//       } else {
-//         return (
-//           <div className="invitations">
-//            <h1>Invitations</h1>
-//            <div>
-//             <button type="button">Confirm</button>
-//             <button type="button">Decline</button>
-//            </div>
-//           </div>
-//         )
-//       }
-//     }
-// }
-
-// export default Inbox
