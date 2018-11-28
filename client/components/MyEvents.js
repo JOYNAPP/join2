@@ -21,6 +21,8 @@ class MyEvents extends Component {
     const fulfilledEvents = userEvents.filter(event => event.fulfilled)
     return (
       <div>
+        <br />
+          <br />
               <h2>Mark Your Calendar! 📅 </h2>
 
       <div>{fulfilledEvents.map((event) => {

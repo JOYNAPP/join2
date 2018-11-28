@@ -52,25 +52,29 @@ class Inbox extends Component {
     console.log('inboxEvents', inboxEvents)
     if (inboxEvents.length === 0) {
       return (
+        <div className="container">
+        <br />
+        <br />
         <div className="inboxError">
-          <br />
-          <br />
-          <br />
-          <br />
-          <h1>Invitations</h1>
+        <br />
+        <br />
+          <h1>Invitations:</h1>
           <div className="error">
             Your inbox does not contain any invitations yet.
           </div>
-          <button type="button">
-            <NavLink to="/events" className="return">
+          <button type="button" className="event-info">
+            <NavLink to="/events">
               Explore Events
             </NavLink>
           </button>
         </div>
+        </div>
       )
     } else {
       return (
+        <div className="container">
         <div className="inbox">
+        <br />
           <h2> Invitations:</h2>
           {inboxEvents.map(event => {
             console.log('first event', event)
@@ -164,7 +168,7 @@ class Inbox extends Component {
                     {event.eventName}
                   </h3>
                   <h4>on {new Date(event.eventDate).toDateString()}</h4>
-                  <h4>with {friends.join(', ')}!</h4>
+                  <h4>with {friends.map(friend => friend.name).join(', ')}!</h4>
                   <button
                     type="button"
                     className="event-info"
@@ -177,6 +181,7 @@ class Inbox extends Component {
               )
             }
           })}
+          </div>
         </div>
       )
     }
