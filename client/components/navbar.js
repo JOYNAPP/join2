@@ -9,8 +9,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
   <div id="Navbar">
     <nav>
       {isLoggedIn ? (
-        <div >
-          <Link to="/events"><img src="./logo.png" className="left"/></Link>
+        <div>
+          <Link to="/events">
+            <img src="./JOYN-LOGO.png" className="logo" />
+          </Link>
           {/* The navbar will show these links after you log in */}
           <Link to="/myEvents">{user.name || user.email}'s Events</Link>
           <Link to="/events">All Events</Link>
@@ -22,15 +24,15 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/events"><img src="./logo.png" className="left"/></Link>
-
+          <Link to="/events">
+            <img src="./JOYN-LOGO.png" className="left" />
+          </Link>
 
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
     </nav>
-
   </div>
 )
 
@@ -47,7 +49,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout());
+      dispatch(logout())
     }
   }
 }

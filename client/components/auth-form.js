@@ -12,6 +12,10 @@ const AuthForm = props => {
 
   return (
     <div>
+      <br />
+      <br />
+      <br />
+      <br />
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
@@ -65,8 +69,9 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      formName === 'signup' ? history.push('/signup/new') : 
-      dispatch(auth(email, password, formName)) //on submit sign up, go to additional info sign up page
+      formName === 'signup'
+        ? history.push('/signup/new')
+        : dispatch(auth(email, password, formName)) //on submit sign up, go to additional info sign up page
     }
   }
 }
