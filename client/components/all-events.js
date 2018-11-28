@@ -29,10 +29,11 @@ class allEvents extends Component {
     console.log('THESE EVENTS:', this.state.events)
     return (
       <div className="container">
-      <hr />
-          <h4 id="subtitle">Welcome to JOYN, {this.props.user.name}! Where you invite friends to exciting, upcoming events, and only when everyone confirms will we buy the tickets! <font color="#352480">Attend Events Together. JOYN!</font> 😊</h4>
-        <hr />
+        <div>
+          <h4 id="subtitle">Welcome to JOYN, {this.props.user.name}! Where you invite friends to exciting, upcoming events, and only when everyone confirms will we buy the tickets! <font color="#0B96A8">Attend Events Together. JOYN!</font> 😊</h4>
 
+     
+        </div>
         {this.state.events &&
           this.state.events.map(event => {
             const date = new Date(event.start.local).toDateString()
@@ -57,7 +58,7 @@ class allEvents extends Component {
                 <br />
                 <br />
               </div>
-        
+              <div></div>
             </div>
             )
     
