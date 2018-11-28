@@ -45,12 +45,20 @@ html, body, .viewport {
 main {
   color: white;
 }
+h4 {
+  /* color:rgb(223, 201, 206)
+   */
+   /* color: #754b58 */
+   color: black
+}
+
 
 a {
   text-transform: uppercase;
   text-decoration: none;
   font-size: 18px;
-  color: rgb(53, 36, 128);
+  color: black
+  
 }
 a:visited {
   color:  rgb(53, 41, 107);
@@ -64,6 +72,11 @@ a:hover {
   flex-direction: column;
 }
 
+img {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
 label {
   display: block;
 }
@@ -85,8 +98,15 @@ form div {
 }
 #Navbar img {
     height: 150px;
+    border-style: hidden;
 }
 
+.invite {
+  background-color: rgba(223, 201, 206, 0.5);
+  border-style: solid;
+  border-color: white;
+  padding: 20px;
+}
 .eventimg {
   border: 5px solid black;
   height: 150px;
@@ -183,3 +203,13 @@ form div {
   color:rgb(72, 55, 149);
 }
 
+
+/* colors {
+  pink: #dbacae;
+  lightgrey: rgb(223, 201, 206)
+  darkgrey: #948a96;
+  wine: #665a60;
+  white: #ffffff;
+  black: #000000
+  
+} */
