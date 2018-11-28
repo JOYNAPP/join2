@@ -38,10 +38,12 @@ class FriendList extends Component {
     handleOnSubmit(){
 
         this.props.createContract({
-            eventId: 78900,
+            eventId: this.props.event.id,
+            eventName: this.props.event.name.text,
+            eventDate: this.props.event.start.local,
             friends: [...this.state.chosenFriends, this.props.user.id]
         })
-        console.log('You are going with', this.state.chosenFriends, '!')
+        console.log('You are going with', this.state.chosenFriends, '!', 'eventName', this.props.event.name.text,)
         this.notify()
     }
 
@@ -73,7 +75,7 @@ class FriendList extends Component {
         </tbody>
       </table>
   <div>
-    <button type="button" onClick={this.handleOnSubmit}>Ask Your Friends To JOIN!</button>
+    <button type="button" className="confirm" onClick={this.handleOnSubmit}>Ask Your Friends To JOIN!</button>
     <ToastContainer />
   </div>
     </div>

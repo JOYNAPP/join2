@@ -17,7 +17,6 @@ export default class allEvents extends Component {
       `https://www.eventbriteapi.com/v3/events/search/?q=$drake&token=AF36NVFKHSLG27TQBBWF`
     )
     const events = res.data.events
-    console.log('dringus', events)
     this.setState({events: events})
     console.table(events)
   }
@@ -31,27 +30,29 @@ export default class allEvents extends Component {
           this.state.events.map(event => {
             const date = new Date(event.start.local).toDateString()
             return (
-              <div className="event-list" key={event.id}>
-                <h3>
+              <div className="card" key={event.id}>
+                <div className="card-body">
+                <h3 className="card-title">
                   <Link to={`/events/${event.id}`}>{event.name.text}</Link>
                 </h3>
                 <div>Date: {date}</div>
-                <p>
+                <p className="card-text">
                   {event.description.text.length > 399
                     ? event.description.text.slice(0, 400) + '...'
                     : event.description.text}
                 </p>
                 {event.logo ? (
-                  <img src={event.logo.url} />
+                  <img className="card-img-top" src={event.logo.url} />
                 ) : (
                   <img src="https://allmods.net/wp-content/uploads/2018/08/no-image-available.png" />
                 )}
                 <br />
                 <br />
               </div>
+            </div>
             )
           })}
-      </div>
+        </div>
     )
   }
 }

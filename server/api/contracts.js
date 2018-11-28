@@ -8,7 +8,9 @@ module.exports = router
 router.post('/', async (req, res, next) => {
   try {
       let contract = await Contract.create({
-        eventId: req.body.eventId
+        eventId: req.body.eventId,
+        eventName: req.body.eventName,
+        eventDate: req.body.eventDate
       })
       await contract.setUsers([...req.body.friends])
 

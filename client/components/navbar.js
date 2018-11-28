@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import history from '../history'
 
 const Navbar = ({handleClick, isLoggedIn, user}) => (
   <div id="Navbar">
-    {/* <h1>JOYN</h1> */}
     <nav>
       {isLoggedIn ? (
         <div >
-        <img src="./logo.png" className="left"/>
+          <Link to="/events"><img src="./logo.png" className="left"/></Link>
           {/* The navbar will show these links after you log in */}
-          <Link to="/MyEvents">{user.name}'s Events</Link>
-          <Link to="/events">Events</Link>
+          <Link to="/home">{user.name}'s Events</Link>
+          <Link to="/events">All Events</Link>
           <Link to="/inbox">Inbox</Link>
           <a href="#" onClick={handleClick}>
             Logout
@@ -22,7 +22,8 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <img src="./logo.png" className="left"/>
+          <Link to="/events"><img src="./logo.png" className="left"/></Link>
+          
 
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
@@ -46,7 +47,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout())
+      dispatch(logout());
     }
   }
 }
