@@ -98,7 +98,7 @@ class Inbox extends Component {
                           <div id="pendingFriends" key={friend.name}>
                             <li>
                               <font color="#0B96A8">
-                                {friend.name} not responded yet 😢{' '}
+                                {friend.name} has not responded yet 😢{' '}
                               </font>
                             </li>
                           </div>
