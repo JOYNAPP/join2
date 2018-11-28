@@ -3,8 +3,14 @@ const db = require('../db')
 
 const Contract = db.define('contract', {
   eventId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.BIGINT,
     allowNull: false,
+  },
+  eventName: {
+    type: Sequelize.STRING
+  },
+  eventDate: {
+    type: Sequelize.STRING
   },
   fulfilled: {
     type: Sequelize.BOOLEAN,

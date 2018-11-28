@@ -11,7 +11,6 @@ import AllEvents from './all-events'
  */
 export const UserHome = props => {
   const {name} = props
-
   return (
     <div>
       <h3>Welcome to JOYN, {name}!</h3>
