@@ -11,9 +11,6 @@ import 'react-toastify/dist/ReactToastify.css'
 class Inbox extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      clicked: false
-    }
     this.handleConfirm = this.handleConfirm.bind(this)
     this.handleDecline = this.handleDecline.bind(this)
   }
@@ -42,6 +39,7 @@ class Inbox extends Component {
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
     this.notifyDecl()
   }
+
   render() {
     const confirmedEvents = this.props.userConfirmContracts
     const inboxEvents = this.props.userContracts || []
@@ -63,15 +61,12 @@ class Inbox extends Component {
     } else {
       return (
         <div className='inbox'>
-          <h2> Inbox:</h2>
+          <h2> Invitations:</h2>
           {
             inboxEvents.map(event => {
-              console.log('event', event)
+              console.log('first event', event)
             const responded = event.userContract.responded
             const response = event.userContract.response
-            console.log('event', event)
-            console.log('responded', responded)
-
             const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
               return `${friend.name}`
             })
@@ -81,11 +76,9 @@ class Inbox extends Component {
            
             return (
                 <div key={event.id}>
-                  <h3>Event Id: {event.id}</h3>
-                  <h3>{event.name}</h3>
-                  <h5>{event.date}</h5>
-                  <h5>{event.ticketPrice}</h5>
-                  <h5>Friends Also Invited: {friends.join(', ')}!</h5>
+                  <h3>{event.eventName}</h3>
+                  <h4>{new Date(event.eventDate).toDateString()}</h4>
+                  <h4>Friends Also Invited: {friends.join(', ')}!</h4>
                   <p>
                     Would you like to attend this event? By clicking 'Confirm' you
                     agree to JOYNing this event!
@@ -122,11 +115,9 @@ class Inbox extends Component {
             } else if (confirmedEvents.includes(event) && response) {
               return (
                 <div key={event.id}>
-                  <h3>You've responded {response ? 'Yes' : 'No'} to: {event.id}</h3>
-                  <h3>{event.name}</h3>
-                  <h5>{event.date}</h5>
-                  <h5>{event.ticketPrice}</h5>
-                  <h5>Friends Also Invited: {friends.join(', ')}!</h5>
+                  <h3>You've responded {response ? '"YES!"' : 'no'} to: {event.eventName}</h3>
+                  <h4>on {new Date(event.eventDate).toDateString()}</h4>
+                  <h4>with {friends.join(', ')}!</h4>
                   <button type="button" className="event-info" value={event.id}
                     onClick={() => history.push(`/events/${event.id}`)}>
                     Event Info

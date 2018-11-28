@@ -60,7 +60,7 @@ class SingleEvent extends Component {
               </h2>
             </div>
             {users.length ? (
-              <FriendList friends={users} user={user} />
+              <FriendList friends={users} user={user} event={this.state.event}/>
             ) : (
               <div>There are no users right now!</div>
             )}
