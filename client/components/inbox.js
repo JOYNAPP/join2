@@ -68,29 +68,43 @@ class Inbox extends Component {
             const responded = event.userContract.responded
             console.log('responsed', responded)
             const response = event.userContract.response
-            const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
-
-              return `${friend.name || friend.email} has ${friend.userContract.response ? 'responded yes!' : 'not responded yet 😢'}`
-            })
-
+            const friends = event.users.filter(friend => friend.id !== this.props.user.id)
+              console.log('friends const', friends)
             if (!confirmedEvents.includes(event) && !responded) {
 
 
             return (
-                <div key={event.id}>
+                <div key={event.id} className="invite">
                   <h3>{event.eventName}</h3>
                   <h4>{new Date(event.eventDate).toDateString()}</h4>
-                  <h4><font color="#0B96A8">Friends Also Invited:</font></h4>
+                  <h4>Pending Responses:</h4>
                     <ul>
                       {
                     friends.map((friend) => {
-                      return (
-                      <li key={friend.name}><font color="#0B96A8">{friend}</font></li>
-                      )
+                      if (!friend.userContract.responded) {
+                        return (
+                          <div id="pendingFriends" key={friend.name}>
+                            <li ><font color="#0B96A8">{friend.name} not responded yet 😢 </font></li>
+                          </div>
+                        )
+                      }
                     })
                   }
                     </ul>
-                
+                    <h4>Responses:</h4>
+                    <ul>
+                      {
+                    friends.map((friend) => {
+                      if (friend.userContract.responded) {
+                        return (
+                          <div id="respondedFriends" key={friend.name}>
+                            <li><font color="#0B96A8">{friend.name} has responded {friend.userContract.response ? 'yes!' : 'no'}</font></li>
+                          </div>
+                        )
+                      }
+                    })
+                  }
+                    </ul>
                   <p>
                     Would you like to attend this event? By clicking 'Confirm' you
                     agree to JOYNing this event!
@@ -121,7 +135,6 @@ class Inbox extends Component {
                     onClick={() => history.push(`/events/${event.eventId}`)}>
                     Event Info
                   </button>
-                  <hr />
                 </div>
              )
             } else if (confirmedEvents.includes(event) && response) {
@@ -134,7 +147,6 @@ class Inbox extends Component {
                     onClick={() => history.push(`/events/${event.eventId}`)}>
                     Event Info
                   </button>
-                  <hr />
                 </div>
               )
 

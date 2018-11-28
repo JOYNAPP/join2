@@ -31,7 +31,8 @@ class allEvents extends Component {
       <div className="container">
         <div>
           <h4 id="subtitle">Welcome to JOYN, {this.props.user.name}! Where you invite friends to exciting, upcoming events, and only when everyone confirms will we buy the tickets! <font color="#0B96A8">Attend Events Together. JOYN!</font> 😊</h4>
-        <hr />
+
+     
         </div>
         {this.state.events &&
           this.state.events.map(event => {
