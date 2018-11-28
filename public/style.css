@@ -101,11 +101,23 @@ form div {
     border-style: hidden;
 }
 
+#splashLogo {
+  border-style: hidden;
+}
+
 .invite {
   background-color: rgba(223, 201, 206, 0.5);
   border-style: solid;
   border-color: white;
   padding: 20px;
+}
+
+.fulfilledEvent {
+  background-color: rgba(223, 201, 206, 0.5);
+  border-style: solid;
+  border-color: white;
+  padding: 20px;
+  color: white;
 }
 .eventimg {
   border: 5px solid black;
@@ -126,9 +138,9 @@ form div {
 }
 
 .decline {
-  background-color: rgb(11, 150, 168);
+  background-color: rgba(223, 201, 206, 0.5);
   border: none;
-  color: white;
+  color: black;
   font-size: 16px;
   padding: 10px 25px;
   border-radius: 8px;
@@ -141,7 +153,7 @@ form div {
 }
 
 .event-info {
-  background-color: rgb(11, 150, 168);
+  background-color: rgb(72, 55, 149, 0.6);
   border: none;
   color: white;
   font-size: 16px;
@@ -155,9 +167,9 @@ form div {
 }
 
 .confirm  {
-  background-color: rgb(72, 55, 149);
+  background-color: rgba(223, 201, 206, 0.5);
   border: none;
-  color: white;
+  color: black;
   font-size: 16px;
   padding: 10px 25px;
   border-radius: 8px;
@@ -206,10 +218,13 @@ form div {
 
 /* colors {
   pink: #dbacae;
+  lightyellow: rgba(241, 233, 109, 0.61);
   lightgrey: rgb(223, 201, 206)
-  darkgrey: #948a96;
+  darkgrey: #948a96; rgb(148,138,150)
   wine: #665a60;
   white: #ffffff;
   black: #000000
   
+
+  oldGreen: rgb(11, 150, 168);
 } */
