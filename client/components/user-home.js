@@ -13,8 +13,8 @@ export const UserHome = props => {
   const {name} = props
   return (
     <div>
-      <h3>Welcome to JOYN, {name}!</h3>
-      <AllEvents />
+      {/* <h3>Welcome to JOYN, {name}!</h3> */}
+      <AllEvents name={name}/>
     </div>
   )
 }
