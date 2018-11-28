@@ -37,7 +37,6 @@ class Routes extends Component {
 
         <Route exact path="/events/:eventId" component={SingleEvent} />
         <Route path="/myEvents" component={MyEvents} />
-
         <Route path="/inbox" component={Inbox} />
 
 
