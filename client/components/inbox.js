@@ -24,10 +24,10 @@ class Inbox extends Component {
     console.log('this state userContracts', this.props.userContracts)
   }
 
-  
+
   notifyConf = () => toast(' 😊  You have confirmed!')
   notifyDecl = () => toast(' 🙁  You have declined.')
-  
+
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
     this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
@@ -69,12 +69,13 @@ class Inbox extends Component {
             console.log('responsed', responded)
             const response = event.userContract.response
             const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
-              return `${friend.name} has ${friend.userContract.response ? 'responded yes!' : 'not responded yet 😢'}`
+
+              return `${friend.name || friend.email} has ${friend.userContract.response ? 'responded yes!' : 'not responded yet 😢'}`
             })
 
             if (!confirmedEvents.includes(event) && !responded) {
 
-           
+
             return (
                 <div key={event.id}>
                   <h3>{event.eventName}</h3>
@@ -95,18 +96,18 @@ class Inbox extends Component {
                     agree to JOYNing this event!
                   </p>
                   <p>We'll take over from here 😊</p>
-                    
+
                   <ToastContainer transition={Zoom}/>
                   <ToastContainer transition={Zoom}/>
-                  
-                  <button 
+
+                  <button
                     className="confirm"
                     type="button"
                     value={event.id}
                     onClick={this.handleConfirm}>
                     Confirm
                   </button>
-                  
+
                   <button
                     className="decline"
                     type="button"
@@ -136,7 +137,7 @@ class Inbox extends Component {
                   <hr />
                 </div>
               )
-            
+
             }
 
 

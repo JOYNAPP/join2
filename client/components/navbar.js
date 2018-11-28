@@ -12,7 +12,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
         <div >
           <Link to="/events"><img src="./logo.png" className="left"/></Link>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">{user.name}'s Events</Link>
+          <Link to="/home">{user.name || user.email}'s Events</Link>
           <Link to="/events">All Events</Link>
           <Link to="/inbox">Inbox</Link>
           <a href="#" onClick={handleClick}>
@@ -23,7 +23,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/events"><img src="./logo.png" className="left"/></Link>
-          
+
 
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
