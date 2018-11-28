@@ -40,20 +40,22 @@ class SingleEvent extends Component {
       <div>
         <div className="grid-child">
           <div className="user-orders">
-            <h2>{this.state.event.name && this.state.event.name.text}</h2>
-            <p>
+            <h2 className="single-event-title">{this.state.event.name && this.state.event.name.text}</h2>
+            <p className="date">
               {this.state.event.start &&
                 new Date(this.state.event.start.local).toDateString()}
             </p>
+            <div className="single-event-container">
             {event.logo ? (
-              <img src={event.logo.url} />
+              <img className="single-event" src={event.logo.url} />
             ) : (
-              <img src="https://allmods.net/wp-content/uploads/2018/08/no-image-available.png" />
+              <img className="single-event" src="https://allmods.net/wp-content/uploads/2018/08/no-image-available.png" />
             )}
             <p>
               {this.state.event.description &&
                 this.state.event.description.text}
             </p>
+            </div>
             <div>
               <h2 className="order-details" id="left-float">
                 Who Do You Want To Go With?
