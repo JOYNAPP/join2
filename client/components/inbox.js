@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter, NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import axios from 'axios'
 import {me} from '../store'
 import {putContract, loadContracts} from '../store/contract'
 import history from '../history'
