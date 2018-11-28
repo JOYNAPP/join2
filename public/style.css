@@ -1,8 +1,8 @@
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-html, body, .viewport {
-  background: #dbacae;
-  /* font-family: sans-serif; */
+html,
+body,
+.viewport {
+  background: #7aa3a1;
   outline: black;
   width: 100%;
   height: 100%;
@@ -10,7 +10,6 @@ html, body, .viewport {
   padding: 20px;
   font-family: 'Open Sans';
 }
-
 
 .flex-container {
   display: -webkit-box;
@@ -42,26 +41,28 @@ html, body, .viewport {
   height: 30%;
 } */
 
+.logo {
+  height: 200px;
+}
+
 main {
   color: white;
 }
 h4 {
   /* color:rgb(223, 201, 206)
    */
-   /* color: #754b58 */
-   color: black
+  /* color: #754b58 */
+  color: white;
 }
-
 
 a {
   text-transform: uppercase;
   text-decoration: none;
   font-size: 18px;
-  color: black
-  
+  color: white;
 }
 a:visited {
-  color:  rgb(53, 41, 107);
+  color: white;
 }
 a:hover {
   color: rgb(223, 201, 206);
@@ -83,7 +84,8 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 2.5em 1em 1.5em;
+  margin: 1em;
+  color: white;
 }
 
 #subtitle {
@@ -96,12 +98,28 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+#Navbar {
+  display: flex;
+  background-color: #2e7482;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-radius: 15px;
+}
 #Navbar img {
-    height: 150px;
-    border-style: hidden;
+  height: 55px;
+  border-style: hidden;
+  justify-content: space-around;
 }
 
 .invite {
+  background-color: rgba(223, 201, 206, 0.5);
+  border-style: solid;
+  border-color: white;
+  padding: 20px;
+}
+
+.fulfilledEvent {
   background-color: rgba(223, 201, 206, 0.5);
   border-style: solid;
   border-color: white;
@@ -121,7 +139,7 @@ form div {
 }
 
 #app {
-  color: rgb(72, 55, 149);
+  color: black;
   outline: black;
 }
 
@@ -137,7 +155,6 @@ form div {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-
 }
 
 .event-info {
@@ -154,7 +171,7 @@ form div {
   display: inline-block;
 }
 
-.confirm  {
+.confirm {
   background-color: rgb(72, 55, 149);
   border: none;
   color: white;
@@ -170,7 +187,10 @@ form div {
 
 .card {
   display: inline-block;
-  
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2px solid white;
+  color: black;
+
   /* flex-direction: row; */
   align-items: center;
   /* justify-content: space-evenly; */
@@ -181,9 +201,8 @@ form div {
   width: 400px;
   height: 490px;
   padding: 20px 20px;
-  border: 1px solid white;
   margin-bottom: 80px;
-  
+
   text-align: justify;
   color: white;
 }
@@ -197,12 +216,13 @@ form div {
 
 .card-title {
   font-size: 20px;
-  font-weight: bold; 
+  font-weight: bold;
+  color: black;
 }
 
 .date {
   font-size: 16px;
-  color:rgb(72, 55, 149);
+  color: #388999;
 }
 
 .container {
@@ -213,7 +233,6 @@ form div {
   flex-direction: row;
 }
 
-
 /* colors {
   pink: #dbacae;
   lightgrey: rgb(223, 201, 206)
@@ -221,5 +240,5 @@ form div {
   wine: #665a60;
   white: #ffffff;
   black: #000000
-  
+
 } */

@@ -10,7 +10,6 @@ class SingleEvent extends Component {
     super(props)
     this.state = {
       event: {}
-
     }
   }
 
@@ -38,6 +37,10 @@ class SingleEvent extends Component {
       // if use if already GOING to event loading, show 'YAY YOURE GOING' view
       // }
       <div>
+        <br />
+        <br />
+        <br />
+        <br />
         <div className="grid-child">
           <div className="user-orders">
             <h2>{this.state.event.name && this.state.event.name.text}</h2>
@@ -60,7 +63,11 @@ class SingleEvent extends Component {
               </h2>
             </div>
             {users.length ? (
-              <FriendList friends={users} user={user} event={this.state.event}/>
+              <FriendList
+                friends={users}
+                user={user}
+                event={this.state.event}
+              />
             ) : (
               <div>There are no users right now!</div>
             )}

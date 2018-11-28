@@ -5,7 +5,7 @@ import axios from 'axios'
 import {me} from '../store'
 import {putContract, loadContracts} from '../store/contract'
 import history from '../history'
-import { ToastContainer, toast, Zoom } from 'react-toastify';
+import {ToastContainer, toast, Zoom} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 class Inbox extends Component {
@@ -24,19 +24,26 @@ class Inbox extends Component {
     console.log('this state userContracts', this.props.userContracts)
   }
 
-
   notifyConf = () => toast(' 😊  You have confirmed!')
   notifyDecl = () => toast(' 🙁  You have declined.')
 
   handleConfirm(e) {
     console.log('I want to go!', e.target.value)
-    this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: true})
+    this.props.actions.respondInvite({
+      receiverEmail: `${this.props.user.email}`,
+      contractId: `${e.target.value}`,
+      yn: true
+    })
     this.notifyConf()
   }
 
   handleDecline(e) {
     console.log('Sorry, I do not want to go!')
-    this.props.actions.respondInvite({receiverEmail: `${this.props.user.email}`, contractId: `${e.target.value}`, yn: false})
+    this.props.actions.respondInvite({
+      receiverEmail: `${this.props.user.email}`,
+      contractId: `${e.target.value}`,
+      yn: false
+    })
     this.notifyDecl()
   }
 
@@ -47,6 +54,10 @@ class Inbox extends Component {
     if (inboxEvents.length === 0) {
       return (
         <div className="inboxError">
+          <br />
+          <br />
+          <br />
+          <br />
           <h1>Invitations</h1>
           <div className="error">
             Your inbox does not contain any invitations yet.
@@ -60,65 +71,70 @@ class Inbox extends Component {
       )
     } else {
       return (
-        <div className='inbox'>
+        <div className="inbox">
           <h2> Invitations:</h2>
-          {
-            inboxEvents.map(event => {
-              console.log('first event', event)
+          {inboxEvents.map(event => {
+            console.log('first event', event)
             const responded = event.userContract.responded
             console.log('responsed', responded)
             const response = event.userContract.response
-            const friends = event.users.filter(friend => friend.id !== this.props.user.id)
-              console.log('friends const', friends)
+            const friends = event.users.filter(
+              friend => friend.id !== this.props.user.id
+            )
+            console.log('friends const', friends)
             if (!confirmedEvents.includes(event) && !responded) {
-
-
-            return (
+              return (
                 <div key={event.id} className="invite">
                   <h3>{event.eventName}</h3>
                   <h4>{new Date(event.eventDate).toDateString()}</h4>
                   <h4>Pending Responses:</h4>
-                    <ul>
-                      {
-                    friends.map((friend) => {
+                  <ul>
+                    {friends.map(friend => {
                       if (!friend.userContract.responded) {
                         return (
                           <div id="pendingFriends" key={friend.name}>
-                            <li ><font color="#0B96A8">{friend.name} not responded yet 😢 </font></li>
+                            <li>
+                              <font color="#0B96A8">
+                                {friend.name} not responded yet 😢{' '}
+                              </font>
+                            </li>
                           </div>
                         )
                       }
-                    })
-                  }
-                    </ul>
-                    <h4>Responses:</h4>
-                    <ul>
-                      {
-                    friends.map((friend) => {
+                    })}
+                  </ul>
+                  <h4>Responses:</h4>
+                  <ul>
+                    {friends.map(friend => {
                       if (friend.userContract.responded) {
                         return (
                           <div id="respondedFriends" key={friend.name}>
-                            <li><font color="#0B96A8">{friend.name} has responded {friend.userContract.response ? 'yes!' : 'no'}</font></li>
+                            <li>
+                              <font color="#0B96A8">
+                                {friend.name} has responded{' '}
+                                {friend.userContract.response ? 'yes!' : 'no'}
+                              </font>
+                            </li>
                           </div>
                         )
                       }
-                    })
-                  }
-                    </ul>
+                    })}
+                  </ul>
                   <p>
-                    Would you like to attend this event? By clicking 'Confirm' you
-                    agree to JOYNing this event!
+                    Would you like to attend this event? By clicking 'Confirm'
+                    you agree to JOYNing this event!
                   </p>
                   <p>We'll take over from here 😊</p>
 
-                  <ToastContainer transition={Zoom}/>
-                  <ToastContainer transition={Zoom}/>
+                  <ToastContainer transition={Zoom} />
+                  <ToastContainer transition={Zoom} />
 
                   <button
                     className="confirm"
                     type="button"
                     value={event.id}
-                    onClick={this.handleConfirm}>
+                    onClick={this.handleConfirm}
+                  >
                     Confirm
                   </button>
 
@@ -126,35 +142,42 @@ class Inbox extends Component {
                     className="decline"
                     type="button"
                     value={event.id}
-                    onClick={this.handleDecline}>
+                    onClick={this.handleDecline}
+                  >
                     Decline
                   </button>
 
-
-                 <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.eventId}`)}>
-                    Event Info
-                  </button>
-                </div>
-             )
-            } else if (confirmedEvents.includes(event) && response) {
-              return (
-                <div key={event.id}>
-                  <h3>You've responded {response ? '"YES!"' : 'no'} to: {event.eventName}</h3>
-                  <h4>on {new Date(event.eventDate).toDateString()}</h4>
-                  <h4>with {friends.join(', ')}!</h4>
-                  <button type="button" className="event-info" value={event.id}
-                    onClick={() => history.push(`/events/${event.eventId}`)}>
+                  <button
+                    type="button"
+                    className="event-info"
+                    value={event.id}
+                    onClick={() => history.push(`/events/${event.eventId}`)}
+                  >
                     Event Info
                   </button>
                 </div>
               )
-
+            } else if (confirmedEvents.includes(event) && response) {
+              return (
+                <div key={event.id}>
+                  <h3>
+                    You've responded {response ? '"YES!"' : 'no'} to:{' '}
+                    {event.eventName}
+                  </h3>
+                  <h4>on {new Date(event.eventDate).toDateString()}</h4>
+                  <h4>with {friends.join(', ')}!</h4>
+                  <button
+                    type="button"
+                    className="event-info"
+                    value={event.id}
+                    onClick={() => history.push(`/events/${event.eventId}`)}
+                  >
+                    Event Info
+                  </button>
+                </div>
+              )
             }
-
-
-           })
-          }
+          })}
         </div>
       )
     }
