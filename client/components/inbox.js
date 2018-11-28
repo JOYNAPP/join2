@@ -66,9 +66,10 @@ class Inbox extends Component {
             inboxEvents.map(event => {
               console.log('first event', event)
             const responded = event.userContract.responded
+            console.log('responsed', responded)
             const response = event.userContract.response
             const friends = event.users.filter(friend => friend.id !== this.props.user.id).map((friend) => {
-              return `${friend.name}`
+              return `${friend.name} has ${friend.userContract.response ? 'responded yes!' : 'not responded yet 😢'}`
             })
 
             if (!confirmedEvents.includes(event) && !responded) {
@@ -78,7 +79,17 @@ class Inbox extends Component {
                 <div key={event.id}>
                   <h3>{event.eventName}</h3>
                   <h4>{new Date(event.eventDate).toDateString()}</h4>
-                  <h4>Friends Also Invited: {friends.join(', ')}!</h4>
+                  <h4><font color="#0B96A8">Friends Also Invited:</font></h4>
+                    <ul>
+                      {
+                    friends.map((friend) => {
+                      return (
+                      <li key={friend.name}><font color="#0B96A8">{friend}</font></li>
+                      )
+                    })
+                  }
+                    </ul>
+                
                   <p>
                     Would you like to attend this event? By clicking 'Confirm' you
                     agree to JOYNing this event!
