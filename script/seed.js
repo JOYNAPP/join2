@@ -3,9 +3,17 @@
 const db = require('../server/db')
 const {User, Contract, FunEvent} = require('../server/db/models')
 const {green, red} = require('chalk')
+// const Sequelize = require('sequelize')
+// const testdb = new Sequelize(
+//   `postgres://localhost:5432/join2-test`,
+//   {
+//     logging: false
+//   }
+// )
 
 const seed = async () => {
   await db.sync({force: true})
+  // await testdb.sync({force: true})
 
   const uma = await User.create({
     name: 'Uma Huggins',
@@ -108,4 +116,6 @@ seed().catch(err => {
   console.error(red('Something went wrong'))
   console.error(err)
   db.close()
-})
+});
+
+module.exports = seed;

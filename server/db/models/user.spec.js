@@ -5,8 +5,8 @@ const db = require('../index')
 const User = db.model('user')
 
 describe('User model', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
+  beforeEach(async () => {
+    await db.sync({force: true})
   })
 
   describe('instanceMethods', () => {
@@ -15,7 +15,8 @@ describe('User model', () => {
 
       beforeEach(async () => {
         cody = await User.create({
-          email: 'cody@puppybook.com',
+          name: 'Codyy',
+          email: 'mark@puppybook.com',
           password: 'bones'
         })
       })
