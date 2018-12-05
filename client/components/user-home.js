@@ -10,11 +10,10 @@ import AllEvents from './all-events'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {name} = props
+  const {email} = props
   return (
     <div>
-      {/* <h3>Welcome to JOYN, {name}!</h3> */}
-      <AllEvents name={name}/>
+      <h3>Welcome, {email}</h3>
     </div>
   )
 }

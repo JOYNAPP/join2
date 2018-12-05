@@ -4,11 +4,12 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const User = db.model('user')
+// const User = db.model('user')
+const {User, Contract, FunEvent} = require('../db/models')
 
-describe('User routes', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
+describe('User routes',  () => {
+  beforeEach(async () => {
+     await db.sync({force: true})
   })
 
   describe('/api/users/', () => {
@@ -16,7 +17,9 @@ describe('User routes', () => {
 
     beforeEach(() => {
       return User.create({
-        email: codysEmail
+        name: 'Cody',
+        email: codysEmail,
+        password: '123',
       })
     })
 
